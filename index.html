@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
-:root{--ink:#101B24;--paper:#EAEEF2;--card:#FFF;--line:#D8E0E7;--muted:#5B6B78;--text:#17232D;--amber:#F4A017;--amber2:#D8890B;--in:#0E9F6E;--out:#D6452F;}
+:root{--ink:#101B24;--paper:#EAEEF2;--card:#FFF;--line:#D8E0E7;--muted:#5B6B78;--text:#17232D;--amber:#F4A017;--amber2:#D8890B;--in:#0E9F6E;--out:#D6452F;--warn:#E07A00;}
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Space Grotesk','Noto Sans Bengali',system-ui,sans-serif;background:var(--paper);color:var(--text);-webkit-font-smoothing:antialiased;}
 body.bn{font-family:'Noto Sans Bengali','Space Grotesk',system-ui,sans-serif;}
@@ -20,7 +20,7 @@ body.bn{font-family:'Noto Sans Bengali','Space Grotesk',system-ui,sans-serif;}
 .app{max-width:540px;margin:0 auto;min-height:100vh;padding:0 0 88px;}
 .app.nonav{padding-bottom:28px;}
 .screen{padding:16px;}
-.sec-title{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:4px 2px 10px;}
+.sec-title{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:12px 2px 10px;}
 .hint{font-size:12.5px;color:var(--muted);margin:-4px 2px 8px;line-height:1.4;}
 /* header */
 .hd{position:sticky;top:0;z-index:20;background:rgba(234,238,242,.94);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);}
@@ -38,22 +38,28 @@ body.bn{font-family:'Noto Sans Bengali','Space Grotesk',system-ui,sans-serif;}
 .sel{flex:1;min-width:120px;border:1px solid var(--line);background:var(--card);border-radius:10px;padding:10px 32px 10px 11px;font-family:inherit;font-size:13.5px;color:var(--text);outline:none;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B6B78' stroke-width='2.5'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 10px center;}
 .seg{display:flex;background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:2px;gap:2px;}
 .seg.dark{background:#0A1218;border-color:#263643;}
-.seg-btn{border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:12.5px;font-weight:500;padding:6px 12px;border-radius:7px;cursor:pointer;white-space:nowrap;}
+.seg-btn{border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:12.5px;font-weight:500;padding:6px 10px;border-radius:7px;cursor:pointer;white-space:nowrap;}
 .seg-btn.on{background:var(--card);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.08);}
 .seg.dark .seg-btn{color:#8095A3;} .seg.dark .seg-btn.on{background:var(--amber);color:#101B24;}
 /* dashboard */
 .hero{background:linear-gradient(165deg,#1B2A36 0%,#0D161D 100%);border-radius:18px;padding:18px;color:#E7EEF3;box-shadow:0 10px 30px -14px rgba(13,22,29,.55);border:1px solid #24333F;margin-bottom:14px;}
 .hero-label{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:#7E93A1;font-weight:500;margin-bottom:4px;}
-.hero-net{font-size:38px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:2px 0 14px;}
+.hero-net{font-size:36px;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:2px 0 14px;}
 .hero-two{display:flex;background:#0B1319;border:1px solid #22313D;border-radius:11px;overflow:hidden;}
 .hero-cell{flex:1;padding:11px 14px;display:flex;flex-direction:column;gap:3px;}
 .hero-div{width:1px;background:#22313D;}
 .hero-k{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#6F8492;}
-.hero-v{font-size:16px;font-weight:700;}
+.hero-v{font-size:15px;font-weight:700;}
+.target-box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;}
+.target-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.target-title{font-size:12px;letter-spacing:.05em;text-transform:uppercase;font-weight:600;color:var(--muted);}
+.target-bar-wrap{height:10px;background:var(--paper);border-radius:6px;overflow:hidden;margin-bottom:8px;}
+.target-bar{height:100%;border-radius:6px;transition:width .3s ease;}
+.target-sub{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;}
 .card-k{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:5px;}
-.card-v{font-size:19px;font-weight:700;} .card-v.sm{font-size:15px;}
+.card-v{font-size:18px;font-weight:700;} .card-v.sm{font-size:14.5px;}
 .pos{color:var(--in);} .neg{color:var(--out);} .accent{color:var(--amber2);}
 .chart{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:14px;}
 .bars{display:flex;align-items:flex-end;gap:10px;height:120px;margin-top:12px;}
@@ -61,14 +67,21 @@ body.bn{font-family:'Noto Sans Bengali','Space Grotesk',system-ui,sans-serif;}
 .bpair{display:flex;align-items:flex-end;gap:3px;height:100%;width:100%;justify-content:center;}
 .bar{width:12px;border-radius:3px 3px 0 0;min-height:2px;} .bar.i{background:var(--in);} .bar.e{background:var(--out);}
 .blabel{font-size:10px;color:var(--muted);}
-.legend{display:flex;gap:14px;font-size:11.5px;color:var(--muted);margin-top:4px;}
+.legend{display:flex;gap:14px;font-size:11.5px;color:var(--muted);margin-top:6px;}
 .dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px;vertical-align:middle;}
 .brk{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px 14px;margin-bottom:14px;}
 .brk-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line);} .brk-row:first-child{border-top:0;}
-.brk-name{font-size:13.5px;font-weight:500;flex-shrink:0;width:34%;}
+.brk-name{font-size:13px;font-weight:500;flex-shrink:0;width:34%;}
 .brk-bar-wrap{flex:1;height:8px;background:var(--paper);border-radius:5px;overflow:hidden;}
 .brk-bar{height:100%;border-radius:5px;}
-.brk-val{font-size:13px;font-weight:700;white-space:nowrap;}
+.brk-val{font-size:12.5px;font-weight:700;white-space:nowrap;}
+/* alerts */
+.alert-card{background:#FEF3E2;border:1px solid #FCD9A5;border-radius:14px;padding:12px 14px;margin-bottom:14px;}
+.alert-card.danger{background:#FDECEA;border-color:#F8B4AB;}
+.alert-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#8A5A08;margin-bottom:6px;}
+.alert-card.danger .alert-head{color:var(--out);}
+.alert-item{font-size:12.5px;color:#5A3F07;margin-top:4px;display:flex;justify-content:space-between;gap:8px;}
+.alert-card.danger .alert-item{color:#6D1D13;}
 /* lists */
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .act{display:flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:12px;padding:13px;font-family:inherit;font-size:14.5px;font-weight:600;cursor:pointer;color:#fff;}
@@ -77,24 +90,29 @@ body.bn{font-family:'Noto Sans Bengali','Space Grotesk',system-ui,sans-serif;}
 .row{display:flex;align-items:center;gap:11px;padding:13px 14px;border-top:1px solid var(--line);cursor:pointer;} .row:first-child{border-top:0;} .row:active{background:#F6F8FA;}
 .row-main{flex:1;min-width:0;}
 .row-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;}
-.row-cat{font-weight:600;font-size:14.5px;}
+.row-cat{font-weight:600;font-size:14px;}
 .row-amt{font-weight:700;font-size:14.5px;white-space:nowrap;} .row-amt.income{color:var(--in);} .row-amt.expense{color:var(--out);}
 .row-sub{display:flex;align-items:center;gap:6px;margin-top:3px;color:var(--muted);font-size:12px;flex-wrap:wrap;}
 .badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;}
 .badge.rcv{background:#FEF3E2;color:#8A5A08;} .badge.loan{background:#FDECEA;color:#A83421;} .badge.buy{background:#EAF1FD;color:#215BB8;}
+.badge.fixed{background:#EDE9FE;color:#5B21B6;} .badge.warn{background:#FDECEA;color:#991B1B;}
 .tag{font-size:11px;color:var(--muted);background:var(--paper);padding:2px 7px;border-radius:6px;}
 .st{font-size:11.5px;font-weight:600;} .st.wait{color:#8A5A08;} .st.ok{color:var(--in);}
 .empty{padding:34px 20px;text-align:center;color:var(--muted);font-size:14px;line-height:1.5;}
 .due{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px;}
 .due-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
 .due-party{font-weight:600;font-size:15px;} .due-amt{font-weight:700;font-size:16px;}
-.due-meta{color:var(--muted);font-size:12.5px;margin-top:4px;}
+.due-meta{color:var(--muted);font-size:12px;margin-top:4px;}
 .due-btn{margin-top:11px;width:100%;border:0;border-radius:10px;padding:11px;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;color:#fff;}
 .due-btn.rcv{background:var(--in);} .due-btn.pay{background:var(--out);}
 .tcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:15px;margin-bottom:10px;cursor:pointer;}
 .tcard-top{display:flex;justify-content:space-between;align-items:center;}
 .tcard-name{font-weight:600;font-size:16px;}
 .tcard-meta{color:var(--muted);font-size:12.5px;margin-top:5px;}
+.tcard-docs{margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:12px;display:flex;flex-wrap:wrap;gap:6px;}
+.doc-pill{padding:3px 8px;border-radius:6px;background:var(--paper);color:var(--muted);}
+.doc-pill.soon{background:#FEF3E2;color:#92400E;font-weight:600;}
+.doc-pill.over{background:#FDECEA;color:#991B1B;font-weight:600;}
 .off{opacity:.55;}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px;}
 .tchip{display:flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--card);border-radius:20px;padding:7px 8px 7px 13px;font-size:13px;font-weight:500;}
@@ -122,7 +140,7 @@ body.bn{font-family:'Noto Sans Bengali','Space Grotesk',system-ui,sans-serif;}
 @media(min-width:580px){.overlay{align-items:center;}.sheet{border-radius:20px;}}
 .sheet-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;}
 .sheet-head h3{font-size:19px;font-weight:600;display:flex;align-items:center;gap:8px;}
-.label{display:block;font-size:12px;font-weight:500;color:var(--muted);margin:14px 0 6px;text-transform:uppercase;}
+.label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.04em;}
 .amtwrap{display:flex;align-items:center;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:6px 14px;}
 .amtsym{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;color:var(--muted);margin-right:8px;}
 .amtin{flex:1;border:0;background:transparent;font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:var(--text);outline:none;width:100%;padding:6px 0;}
@@ -131,10 +149,10 @@ body.bn{font-family:'Noto Sans Bengali','Space Grotesk',system-ui,sans-serif;}
 .input:focus{border-color:var(--amber);}
 select.input{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B6B78' stroke-width='2.5'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.segfull{display:flex;background:var(--paper);border:1.5px solid var(--line);border-radius:11px;padding:3px;gap:3px;margin-top:12px;}
-.segfull button{flex:1;border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:13.5px;font-weight:600;padding:10px;border-radius:8px;cursor:pointer;}
+.segfull{display:flex;background:var(--paper);border:1.5px solid var(--line);border-radius:11px;padding:3px;gap:3px;margin-top:6px;}
+.segfull button{flex:1;border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:13px;font-weight:600;padding:9px;border-radius:8px;cursor:pointer;}
 .segfull button.on{background:var(--ink);color:#fff;}
-.segfull.big button{padding:15px 8px;font-size:16px;}
+.segfull.big button{padding:14px 8px;font-size:15px;}
 .cond{display:none;} .cond.show{display:block;}
 .check{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:500;cursor:pointer;}
 .check input{width:20px;height:20px;accent-color:var(--in);}
@@ -145,14 +163,14 @@ select.input{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .login-sub{color:var(--muted);font-size:15px;line-height:1.5;margin-bottom:24px;}
 .gbtn{display:flex;justify-content:center;min-height:44px;}
 .login-msg{margin-top:18px;background:#FDECEA;color:#A83421;padding:12px;border-radius:12px;font-size:14px;line-height:1.5;word-break:break-word;}
-.notice{background:#EAF1FD;color:#215BB8;border-radius:12px;padding:12px 14px;font-size:14.5px;line-height:1.45;margin-bottom:12px;}
+.notice{background:#EAF1FD;color:#215BB8;border-radius:12px;padding:12px 14px;font-size:14px;line-height:1.45;margin-bottom:12px;}
 .notice.warn{background:#FDECEA;color:#A83421;}
 .dbig{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;border:0;border-radius:18px;padding:22px;background:var(--in);color:#fff;font-family:inherit;font-size:22px;font-weight:700;box-shadow:0 4px 0 #0B7C54;cursor:pointer;margin-bottom:18px;}
 .dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
 .dtile{display:flex;flex-direction:column;align-items:center;gap:7px;border:1.5px solid var(--line);background:var(--card);border-radius:16px;padding:16px 6px 12px;font-family:inherit;color:var(--text);cursor:pointer;box-shadow:0 2px 0 var(--line);}
 .dtile:active,.dbig:active{transform:translateY(2px);box-shadow:none;}
-.dico{font-size:34px;line-height:1;display:inline-flex;} .dico.sm{font-size:22px;}
-.dname{font-size:14px;font-weight:600;text-align:center;line-height:1.2;}
+.dico{font-size:32px;line-height:1;display:inline-flex;} .dico.sm{font-size:20px;}
+.dname{font-size:13.5px;font-weight:600;text-align:center;line-height:1.2;}
 .ichip{border:1.5px solid var(--line);background:var(--card);border-radius:20px;padding:9px 14px;font-family:inherit;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;}
 .ichip.on{background:var(--ink);color:#fff;border-color:var(--ink);}
 .photo-btn{display:flex;align-items:center;gap:10px;justify-content:center;border:1.5px dashed #B9C4CE;border-radius:12px;padding:12px;margin:12px 0;cursor:pointer;font-weight:600;color:var(--muted);}
@@ -179,7 +197,7 @@ select.input{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 <div class="toast" id="toast"></div>
 
 <script>
-// ================= 1. CONFIG — paste your two values here =================
+// ================= 1. CONFIG =================
 var CONFIG = {
   API_URL: 'https://script.google.com/macros/s/AKfycbwjT0ewHHatQw-_0TY_BwP_eH5-uwg-PYUJq_oi35iJFPDmOTaoAYVxF4vm_T5lpBpO/exec',
   CLIENT_ID: '1004470384283-k5bvplihlnp5klfe1t4iprpiva5cknti.apps.googleusercontent.com'
@@ -193,12 +211,12 @@ var I18N = {
     name:'Name', amount:'Amount', date:'Date', note:'Note', type:'Type', truck:'Truck', optional:'optional', search:'Search', status:'Status',
     week:'Week', month:'Month', allTime:'All', income:'Income', expense:'Cost', distanceKm:'Distance (km)',
     revenue:'Revenue', totalCost:'Total cost', netProfit:'Net profit', netLoss:'Net loss',
-    cashReceived:'Cash received', receivableOut:'Receivable', payableOut:'Loan payable', perKm:'Profit / km',
+    cashReceived:'Cash received', receivableOut:'Receivable', payableOut:'Payable dues', perKm:'Profit / km',
     topIncome:'Top income source', topCost:'Top cost center', trend:'Income vs cost', breakdownCost:'Cost breakdown', breakdownIncome:'Income breakdown',
     addIncome:'Add income', addCost:'Add cost', editEntry:'Edit entry', noEntries:'No entries yet.', entries:'entries',
-    receivable:'Receivable', loan:'Loan', purchase:'Purchase', received:'Received', paidByMe:'Paid by me', paidOther:'Someone else paid',
+    receivable:'Receivable', loan:'Loan/Unpaid', purchase:'Purchase', received:'Received', paidByMe:'Paid by me', paidOther:'Someone else paid',
     whoOwes:'Who owes you (name)', whoPaid:'Who paid (name)', dueDate:'Due date', interest:'Interest', markReceived:'Mark received', markPaid:'Mark paid',
-    noReceivables:'No pending receivables.', noLoans:'No outstanding loans.', receivables:'Receivables', loans:'Loans / payable',
+    noReceivables:'No pending receivables.', noLoans:'No outstanding loans/payables.', receivables:'Receivables', loans:'Payable / Loans',
     addTruck:'Add truck', editTruck:'Edit truck', plate:'Number plate', model:'Model', year:'Year', active:'Active', inactive:'Inactive', noTrucks:'No trucks yet.', truckName:'Truck name',
     incomeTypes:'Income types', expenseTypes:'Cost types', typeName:'New type name', showDrivers:'Tap a type to show 👁 or hide 🚫 it on drivers\u2019 phones.',
     language:'Language (this phone)', currency:'Currency', deleteEntry:'Delete this entry?', deleteTruckQ:'Delete this truck? Its entries stay in the ledger.', addTruckFirst:'Add a truck first.',
@@ -212,7 +230,15 @@ var I18N = {
     askTruck:'No truck is assigned to you yet. Ask the owner.', cantDelete:'This entry is more than a day old. Ask the owner to change it.',
     storageFull:'Phone storage is full. Connect to the internet so waiting entries can send.',
     confirmLogoutPending:'{n} entries have not been sent and will be lost. Sign out anyway?', loading:'Loading…',
-    setupNeeded:'Setup not finished: open index.html and paste your API_URL and CLIENT_ID.'
+    setupNeeded:'Setup not finished: open index.html and paste your API_URL and CLIENT_ID.',
+    // Enhancement features
+    fitnessExp:'Fitness validity', taxExp:'Tax token validity', routeExp:'Route permit validity',
+    docsAlert:'Document Expiry Alerts (Within 30 Days)', expired:'Expired', expSoon:'Expires in {d}d',
+    costScope:'Cost scope', opCost:'Operational', allCost:'All (incl. Fixed)', fixedBadge:'Fixed Cost', opBadge:'Operational',
+    costNature:'Cost nature', natureOp:'Operational Cost (trip, maintenance, etc.)', natureFixed:'Fixed Cost (purchase, asset, setup)',
+    targetMonth:'Monthly Net Profit Target', targetProgress:'Monthly Profit Target Progress',
+    targetMet:'Above target by', targetShort:'Short of target by', noTarget:'No monthly target set', setTarget:'Set target in Settings',
+    paymentStatus:'Payment Status', isPaid:'Paid', isUnpaid:'Unpaid (Payable)', payer:'Who paid'
   },
   bn: {
     appName:'ট্রাক ট্র্যাকার', dashboard:'ড্যাশবোর্ড', ledger:'লেনদেন', trucks:'ট্রাক', dues:'বাকি', settings:'সেটিংস',
@@ -220,12 +246,12 @@ var I18N = {
     name:'নাম', amount:'পরিমাণ', date:'তারিখ', note:'নোট', type:'ধরন', truck:'ট্রাক', optional:'ঐচ্ছিক', search:'খুঁজুন', status:'অবস্থা',
     week:'সপ্তাহ', month:'মাস', allTime:'সব', income:'আয়', expense:'খরচ', distanceKm:'দূরত্ব (কিমি)',
     revenue:'মোট আয়', totalCost:'মোট খরচ', netProfit:'নিট লাভ', netLoss:'নিট ক্ষতি',
-    cashReceived:'নগদ প্রাপ্ত', receivableOut:'প্রাপ্য বাকি', payableOut:'ঋণ বাকি', perKm:'লাভ / কিমি',
+    cashReceived:'নগদ প্রাপ্ত', receivableOut:'প্রাপ্য বাকি', payableOut:'পরিশোধযোগ্য বাকি', perKm:'লাভ / কিমি',
     topIncome:'সর্বোচ্চ আয়ের উৎস', topCost:'সর্বোচ্চ খরচের খাত', trend:'আয় বনাম খরচ', breakdownCost:'খরচের বিবরণ', breakdownIncome:'আয়ের বিবরণ',
     addIncome:'আয় যোগ করুন', addCost:'খরচ যোগ করুন', editEntry:'এন্ট্রি সম্পাদনা', noEntries:'এখনো কোনো এন্ট্রি নেই।', entries:'এন্ট্রি',
-    receivable:'প্রাপ্য', loan:'ঋণ', purchase:'ক্রয়', received:'প্রাপ্ত', paidByMe:'আমি দিয়েছি', paidOther:'অন্যজন দিয়েছেন',
-    whoOwes:'কে দেবে (নাম)', whoPaid:'কে দিয়েছেন (নাম)', dueDate:'শেষ তারিখ', interest:'সুদ', markReceived:'প্রাপ্ত হিসেবে চিহ্নিত করুন', markPaid:'পরিশোধিত হিসেবে চিহ্নিত করুন',
-    noReceivables:'কোনো বাকি প্রাপ্য নেই।', noLoans:'কোনো বাকি ঋণ নেই।', receivables:'প্রাপ্য', loans:'ঋণ / দেনা',
+    receivable:'প্রাপ্য', loan:'বাকি/দেনা', purchase:'ক্রয়', received:'প্রাপ্ত', paidByMe:'আমি দিয়েছি', paidOther:'অন্যজন দিয়েছেন',
+    whoOwes:'কে দেবে (নাম)', whoPaid:'কে দিয়েছেন (নাম)', dueDate:'পরিশোধের শেষ তারিখ', interest:'সুদ', markReceived:'প্রাপ্ত চিহ্নিত করুন', markPaid:'পরিশোধিত চিহ্নিত করুন',
+    noReceivables:'কোনো বাকি প্রাপ্য নেই।', noLoans:'কোনো অপরিশোধিত বাকি নেই।', receivables:'প্রাপ্য বাকি', loans:'পরিশোধযোগ্য দেনা',
     addTruck:'ট্রাক যোগ করুন', editTruck:'ট্রাক সম্পাদনা', plate:'নম্বর প্লেট', model:'মডেল', year:'সাল', active:'সক্রিয়', inactive:'নিষ্ক্রিয়', noTrucks:'কোনো ট্রাক নেই।', truckName:'ট্রাকের নাম',
     incomeTypes:'আয়ের ধরন', expenseTypes:'খরচের ধরন', typeName:'নতুন ধরনের নাম', showDrivers:'চালকদের ফোনে দেখাতে 👁 বা লুকাতে 🚫 ধরনের উপর চাপুন।',
     language:'ভাষা (এই ফোন)', currency:'মুদ্রা', deleteEntry:'এই এন্ট্রি মুছবেন?', deleteTruckQ:'এই ট্রাক মুছবেন? এর এন্ট্রিগুলো লেনদেনে থেকে যাবে।', addTruckFirst:'আগে একটি ট্রাক যোগ করুন।',
@@ -239,7 +265,15 @@ var I18N = {
     askTruck:'আপনাকে এখনো কোনো ট্রাক দেওয়া হয়নি। মালিককে বলুন।', cantDelete:'এই এন্ট্রি এক দিনের বেশি পুরোনো। বদলাতে মালিককে বলুন।',
     storageFull:'ফোনের জায়গা ভরে গেছে। অপেক্ষার এন্ট্রি পাঠাতে ইন্টারনেট চালু করুন।',
     confirmLogoutPending:'{n}টি এন্ট্রি এখনো পাঠানো হয়নি, সেগুলো হারিয়ে যাবে। তবুও সাইন আউট করবেন?', loading:'লোড হচ্ছে…',
-    setupNeeded:'সেটআপ শেষ হয়নি: index.html খুলে API_URL ও CLIENT_ID বসান।'
+    setupNeeded:'সেটআপ শেষ হয়নি: index.html খুলে API_URL ও CLIENT_ID বসান।',
+    // Enhancement features
+    fitnessExp:'ফিটনেস মেয়াদ', taxExp:'ট্যাক্স টোকেন মেয়াদ', routeExp:'রুট পারমিট মেয়াদ',
+    docsAlert:'কাগজপত্রের মেয়াদ শেষের অ্যালার্ট (৩০ দিনের মধ্যে)', expired:'মেয়াদ শেষ!', expSoon:'{d} দিন বাকি',
+    costScope:'খরচের হিসাব', opCost:'পরিচালন খরচ', allCost:'সব (স্থায়ীসহ)', fixedBadge:'স্থায়ী খরচ', opBadge:'পরিচালন',
+    costNature:'খরচের ধরন', natureOp:'পরিচালন খরচ (ট্রিপ, তেল, মেরামত)', natureFixed:'স্থায়ী খরচ (ক্রয়, নতুন পার্টস, স্থায়ী)',
+    targetMonth:'মাসিক নিট লাভের লক্ষ্যমাত্রা', targetProgress:'মাসিক লাভের লক্ষ্যমাত্রার অগ্রগতি',
+    targetMet:'লক্ষ্যমাত্রার চেয়ে বেশি', targetShort:'লক্ষ্যমাত্রার ঘাটতি', noTarget:'কোনো লক্ষ্যমাত্রা সেট করা নেই', setTarget:'সেটিংসে লক্ষ্যমাত্রা দিন',
+    paymentStatus:'পরিশোধের অবস্থা', isPaid:'পরিশোধিত', isUnpaid:'অপরিশোধিত (বাকি)', payer:'কে টাকা দিয়েছেন'
   }
 };
 var CAT_BN = {Fuel:'জ্বালানি',Maintenance:'রক্ষণাবেক্ষণ',Repair:'মেরামত',Tyres:'টায়ার',Tolls:'টোল',Insurance:'বীমা','Driver pay':'চালকের বেতন',Permit:'পারমিট',Parking:'পার্কিং',Fine:'জরিমানা',Purchase:'ক্রয়','Loan/EMI':'ঋণ/কিস্তি',Other:'অন্যান্য',Freight:'মালভাড়া',Trip:'ট্রিপ',Contract:'চুক্তি',Rental:'ভাড়া',Interest:'সুদ'};
@@ -254,16 +288,16 @@ var NAV = [
   ['ledger','<line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/>'],
   ['trucks', TRUCK],
   ['dues','<path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"/><path d="M4 6v12c0 1.1.9 2 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/>'],
-  ['settings','<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>']
+  ['settings','<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>']
 ];
 
 // ================= 3. State =================
-var state = { me: null, trucks: [], types: [], ledger: [], users: [], settings: { currency: 'BDT', language: 'bn' } };
+var state = { me: null, trucks: [], types: [], ledger: [], users: [], settings: { currency: 'BDT', language: 'bn', targetMonthlyProfit: 0 } };
 var token = localStorage.getItem('tt_token') || '';
 var queue = readJSON('tt_queue', []);
 var lang = localStorage.getItem('tt_lang') || 'bn';
-var screen = 'dashboard', dashTruck = 'all', dashPeriod = 'month', logTruck = 'all', logKind = 'all', logSearch = '';
-var formKind = 'income', formStatus = 'received', editingId = '', form = {};
+var screen = 'dashboard', dashTruck = 'all', dashPeriod = 'month', dashScope = 'op', logTruck = 'all', logKind = 'all', logSearch = '';
+var formKind = 'income', formCostType = 'op', formStatus = 'received', editingId = '', form = {};
 var flushing = false, toastT = null;
 var PERMANENT = ['amount', 'forbidden', 'noTruck', 'unknown', 'email', 'self'];
 
@@ -301,9 +335,20 @@ function inPeriod(e, p) {
   var wk = new Date(now); wk.setHours(0, 0, 0, 0); wk.setDate(wk.getDate() - 6);
   return d >= wk && d <= now;
 }
+function daysUntil(dStr) {
+  if (!dStr) return null;
+  var a = dStr.split('-'); if (a.length < 3) return null;
+  var target = new Date(+a[0], +a[1] - 1, +a[2]);
+  var now = new Date(); now.setHours(0, 0, 0, 0);
+  return Math.round((target - now) / (1000 * 60 * 60 * 24));
+}
+function isEntryFixed(e) {
+  if (e.costNature) return e.costNature === 'fixed';
+  return e.type === 'Purchase' || e.type === 'Loan/EMI';
+}
 function toast(msg) { var el = document.getElementById('toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove('show'); }, 2600); }
 
-// ================= 5. Talking to the server =================
+// ================= 5. Server Communication =================
 function api(action, data, extra) {
   var body = { action: action, token: token, data: data || {} };
   if (extra) Object.keys(extra).forEach(function (k) { body[k] = extra[k]; });
@@ -318,7 +363,6 @@ function adminCall(action, data) {
   }).catch(function () { toast(t('notSaved') + ' — ' + t('offline')); refresh(true); });
 }
 
-// Entries go through a queue saved on the phone, so nothing is lost without signal.
 function qid(q) { return q.op === 'save' ? q.entry.id : q.id; }
 function isPending(id) { return queue.some(function (q) { return qid(q) === id; }); }
 function lite(e) { var c = {}; Object.keys(e).forEach(function (k) { if (k !== 'photoData') c[k] = e[k]; }); if (e.photoData && !c.photo) c.photo = 'pending'; return c; }
@@ -339,7 +383,7 @@ function flush() {
   (item.op === 'save' ? api('saveEntry', item.entry) : api('deleteEntry', { id: item.id })).then(function (res) {
     flushing = false;
     if (!res.ok && res.error === 'auth') return needLogin();
-    if (!res.ok && PERMANENT.indexOf(res.error) < 0) return;   // server busy: retry later
+    if (!res.ok && PERMANENT.indexOf(res.error) < 0) return;
     queue = queue.filter(function (q) { return q !== item; });
     store('tt_queue', queue);
     if (!res.ok) { toast(t('notSaved') + ' (' + res.error + ')'); refresh(true); }
@@ -409,6 +453,7 @@ function refresh(silent) {
 }
 function onBoot(d) {
   d.users = d.users || [];
+  d.settings = d.settings || { currency: 'BDT', language: 'bn', targetMonthlyProfit: 0 };
   state = d;
   store('tt_boot', d);
   applyQueue(); applyLang(); softRender(); flush();
@@ -520,7 +565,10 @@ function saveDriverEntry() {
   var d = new Date(); d.setDate(d.getDate() - form.day);
   var inc = form.kind === 'income';
   var e = { id: uid(), truckId: state.me.truckId, kind: form.kind, type: form.type, amount: Math.round(amount * 100) / 100, date: ymd(d), note: form.note.trim(),
-    status: form.baki ? (inc ? 'receivable' : 'loan') : (inc ? 'received' : 'paid'), party: form.baki ? form.party.trim() : '', dueDate: '', interest: 0, distance: 0,
+    costNature: 'op',
+    status: form.baki ? (inc ? 'receivable' : 'loan') : (inc ? 'received' : 'paid'),
+    payer: form.baki ? '' : state.me.name || state.me.email,
+    party: form.baki ? form.party.trim() : '', dueDate: '', interest: 0, distance: 0,
     createdAt: Date.now(), enteredBy: state.me.email, photo: '' };
   if (form.photo) e.photoData = form.photo;
   if (!enqueue({ op: 'save', entry: e })) return;
@@ -537,37 +585,112 @@ function topKey(m) { return Object.keys(m).sort(function (a, b) { return m[b] - 
 function truckSelect(cur, onchange) { return '<select class="sel" onchange="' + onchange + '"><option value="all">' + t('allTrucks') + '</option>' + state.trucks.map(function (tr) { return '<option value="' + tr.id + '"' + (cur === tr.id ? ' selected' : '') + '>' + esc(tr.name) + '</option>'; }).join('') + '</select>'; }
 function seg(opts, cur, fn) { return opts.map(function (o) { var l = o === 'week' ? t('week') : o === 'month' ? t('month') : t('allTime'); return '<button class="seg-btn' + (cur === o ? ' on' : '') + '" onclick="' + fn + '(\'' + o + '\')">' + l + '</button>'; }).join(''); }
 function setDashPeriod(v) { dashPeriod = v; render(); }
+function setDashScope(v) { dashScope = v; render(); }
 function card(k, v, cls, sm, sub) { return '<div class="card"><div class="card-k">' + k + '</div><div class="card-v ' + (sm ? 'sm ' : '') + (cls || '') + '">' + v + '</div>' + (sub ? '<div class="card-k" style="margin-top:4px">' + sub + '</div>' : '') + '</div>'; }
+
+function checkDocAlerts() {
+  var alerts = [];
+  state.trucks.forEach(function (tr) {
+    if (!tr.active) return;
+    [
+      { label: t('fitnessExp'), date: tr.fitnessDate },
+      { label: t('taxExp'), date: tr.taxDate },
+      { label: t('routeExp'), date: tr.routeDate }
+    ].forEach(function (doc) {
+      if (!doc.date) return;
+      var days = daysUntil(doc.date);
+      if (days !== null && days <= 30) {
+        alerts.push({ truck: tr.name, doc: doc.label, date: doc.date, days: days });
+      }
+    });
+  });
+  return alerts;
+}
+
 function viewDashboard() {
+  var alerts = checkDocAlerts();
+  var alertHtml = '';
+  if (alerts.length) {
+    var hasExpired = alerts.some(function(a){ return a.days < 0; });
+    alertHtml = '<div class="alert-card ' + (hasExpired ? 'danger' : '') + '"><div class="alert-head">⚠️ ' + t('docsAlert') + '</div>'
+      + alerts.map(function (a) {
+        var status = a.days < 0 ? '<strong style="color:var(--out)">' + t('expired') + ' (' + fmtDate(a.date) + ')</strong>' : t('expSoon').replace('{d}', a.days);
+        return '<div class="alert-item"><span><strong>' + esc(a.truck) + '</strong>: ' + a.doc + '</span><span>' + status + '</span></div>';
+      }).join('') + '</div>';
+  }
+
   var base = state.ledger.filter(function (e) { return dashTruck === 'all' || e.truckId === dashTruck; });
   var scoped = base.filter(function (e) { return inPeriod(e, dashPeriod); });
-  var inc = scoped.filter(function (e) { return e.kind === 'income'; }), exp = scoped.filter(function (e) { return e.kind === 'expense'; });
+  
+  // Cost split: Operational vs All (Operational + Fixed)
+  var inc = scoped.filter(function (e) { return e.kind === 'income'; });
+  var expAll = scoped.filter(function (e) { return e.kind === 'expense'; });
+  var exp = dashScope === 'op' ? expAll.filter(function (e) { return !isEntryFixed(e); }) : expAll;
+  
   var revenue = sum(inc, amt), interest = sum(exp, function (e) { return e.interest || 0; });
   var cost = sum(exp, amt) + interest, profit = revenue - cost;
   var received = sum(inc.filter(function (e) { return e.status !== 'receivable'; }), amt);
   var distance = sum(scoped, function (e) { return e.distance || 0; });
   var rcvOut = sum(base.filter(function (e) { return e.kind === 'income' && e.status === 'receivable'; }), amt);
-  var payOut = sum(base.filter(function (e) { return e.kind === 'expense' && e.status === 'loan'; }), function (e) { return e.amount + (e.interest || 0); });
+  var payOut = sum(base.filter(function (e) { return e.kind === 'expense' && (e.status === 'loan' || e.status === 'unpaid'); }), function (e) { return e.amount + (e.interest || 0); });
+  
   var incAgg = aggByType(inc), expAgg = aggByType(exp);
   if (interest > 0) expAgg.Interest = (expAgg.Interest || 0) + interest;
   var topInc = topKey(incAgg), topExp = topKey(expAgg);
-  var h = '<div class="filters">' + truckSelect(dashTruck, 'dashTruck=this.value;render();') + '<div class="seg dark">' + seg(['week', 'month', 'all'], dashPeriod, 'setDashPeriod') + '</div></div>';
-  h += '<div class="hero"><div class="hero-label">' + (profit >= 0 ? t('netProfit') : t('netLoss')) + '</div><div class="hero-net" style="color:' + (profit >= 0 ? '#3DD68C' : '#FF6B57') + '">' + (profit < 0 ? '−' : '') + money(Math.abs(profit)) + '</div>'
+
+  // Target Profit Computation (Month only)
+  var target = (state.settings && state.settings.targetMonthlyProfit) ? parseFloat(state.settings.targetMonthlyProfit) : 0;
+  var targetHtml = '';
+  if (dashPeriod === 'month') {
+    if (target > 0) {
+      var pct = Math.min(100, Math.max(0, Math.round((profit / target) * 100)));
+      var diff = profit - target;
+      var diffText = diff >= 0
+        ? '<span style="color:var(--in);font-weight:700">▲ ' + t('targetMet') + ' ' + money(diff) + '</span>'
+        : '<span style="color:var(--out);font-weight:700">▼ ' + t('targetShort') + ' ' + money(Math.abs(diff)) + '</span>';
+      targetHtml = '<div class="target-box"><div class="target-top"><span class="target-title">' + t('targetProgress') + '</span><span style="font-weight:700">' + pct + '%</span></div>'
+        + '<div class="target-bar-wrap"><div class="target-bar" style="width:' + pct + '%;background:' + (diff >= 0 ? 'var(--in)' : 'var(--amber)') + '"></div></div>'
+        + '<div class="target-sub"><span>' + t('revenue') + ' / ' + money(target) + '</span>' + diffText + '</div></div>';
+    } else {
+      targetHtml = '<div class="target-box" style="padding:10px 14px"><div class="target-sub"><span>' + t('noTarget') + '</span><a href="javascript:void(0)" onclick="go(\'settings\')" style="color:var(--amber2);font-weight:600">' + t('setTarget') + ' →</a></div></div>';
+    }
+  }
+
+  var h = alertHtml;
+  h += '<div class="filters">' + truckSelect(dashTruck, 'dashTruck=this.value;render();') + '<div class="seg dark">' + seg(['week', 'month', 'all'], dashPeriod, 'setDashPeriod') + '</div></div>';
+  
+  // Cost Nature Switcher
+  h += '<div class="seg" style="margin-bottom:12px">'
+    + '<button class="seg-btn' + (dashScope === 'op' ? ' on' : '') + '" style="flex:1" onclick="setDashScope(\'op\')">' + t('opCost') + '</button>'
+    + '<button class="seg-btn' + (dashScope === 'all' ? ' on' : '') + '" style="flex:1" onclick="setDashScope(\'all\')">' + t('allCost') + '</button>'
+    + '</div>';
+
+  h += '<div class="hero"><div class="hero-label">' + (profit >= 0 ? t('netProfit') : t('netLoss')) + ' (' + (dashScope === 'op' ? t('opCost') : t('allCost')) + ')</div><div class="hero-net" style="color:' + (profit >= 0 ? '#3DD68C' : '#FF6B57') + '">' + (profit < 0 ? '−' : '') + money(Math.abs(profit)) + '</div>'
     + '<div class="hero-two"><div class="hero-cell"><span class="hero-k">' + t('revenue') + '</span><span class="hero-v" style="color:#3DD68C">' + money(revenue) + '</span></div><div class="hero-div"></div>'
     + '<div class="hero-cell"><span class="hero-k">' + t('totalCost') + '</span><span class="hero-v" style="color:#FF7A66">' + money(cost) + '</span></div></div></div>';
+  
+  h += targetHtml;
+
   h += '<div class="grid2">' + card(t('cashReceived'), money(received)) + card(t('perKm'), distance > 0 ? money(profit / distance) : '—', 'accent') + card(t('receivableOut'), money(rcvOut), 'accent') + card(t('payableOut'), money(payOut), 'neg') + '</div>';
   h += '<div class="grid2">' + card(t('topIncome'), topInc ? esc(catLabel(topInc)) : '—', 'pos', 1, topInc ? money(incAgg[topInc]) : '') + card(t('topCost'), topExp ? esc(catLabel(topExp)) : '—', 'neg', 1, topExp ? money(expAgg[topExp]) : '') + '</div>';
   return h + trendChart(base) + breakdown(t('breakdownCost'), expAgg, 'var(--out)') + breakdown(t('breakdownIncome'), incAgg, 'var(--in)');
 }
+
 function trendChart(base) {
   var now = new Date(), data = [];
   for (var i = 5; i >= 0; i--) {
     var d = new Date(now.getFullYear(), now.getMonth() - i, 1), y = d.getFullYear(), m = d.getMonth(), inc = 0, exp = 0;
-    base.forEach(function (e) { var a = (e.date || '').split('-'); if (+a[0] === y && +a[1] - 1 === m) { if (e.kind === 'income') inc += e.amount; else exp += e.amount + (e.interest || 0); } });
+    base.forEach(function (e) {
+      var a = (e.date || '').split('-');
+      if (+a[0] === y && +a[1] - 1 === m) {
+        if (e.kind === 'income') inc += e.amount;
+        else if (dashScope === 'all' || !isEntryFixed(e)) exp += e.amount + (e.interest || 0);
+      }
+    });
     data.push({ label: MON[lang][m], inc: inc, exp: exp });
   }
   var max = Math.max(1, Math.max.apply(null, data.map(function (x) { return Math.max(x.inc, x.exp); })));
-  return '<div class="chart"><div class="sec-title" style="margin:0 0 2px">' + t('trend') + '</div><div class="bars">' + data.map(function (x) {
+  return '<div class="chart"><div class="sec-title" style="margin:0 0 2px">' + t('trend') + ' (' + (dashScope === 'op' ? t('opCost') : t('allCost')) + ')</div><div class="bars">' + data.map(function (x) {
     return '<div class="bgrp"><div class="bpair"><div class="bar i" style="height:' + Math.round(x.inc / max * 100) + '%"></div><div class="bar e" style="height:' + Math.round(x.exp / max * 100) + '%"></div></div><span class="blabel">' + x.label + '</span></div>';
   }).join('') + '</div><div class="legend"><span><span class="dot" style="background:var(--in)"></span>' + t('income') + '</span><span><span class="dot" style="background:var(--out)"></span>' + t('expense') + '</span></div></div>';
 }
@@ -595,23 +718,27 @@ function ledgerRows() {
   var list = state.ledger.filter(function (e) {
     if (logTruck !== 'all' && e.truckId !== logTruck) return false;
     if (logKind !== 'all' && e.kind !== logKind) return false;
-    return !q || (e.type + ' ' + catLabel(e.type) + ' ' + e.note + ' ' + e.party + ' ' + truckName(e.truckId) + ' ' + userName(e.enteredBy)).toLowerCase().indexOf(q) >= 0;
+    return !q || (e.type + ' ' + catLabel(e.type) + ' ' + (e.note||'') + ' ' + (e.party||'') + ' ' + (e.payer||'') + ' ' + truckName(e.truckId) + ' ' + userName(e.enteredBy)).toLowerCase().indexOf(q) >= 0;
   }).sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : (b.createdAt || 0) - (a.createdAt || 0); });
   if (!list.length) return '<div class="empty">' + t('noEntries') + '</div>';
   return '<div class="list">' + list.map(function (e) {
     var badges = '';
     if (e.kind === 'income' && e.status === 'receivable') badges += '<span class="badge rcv">' + t('receivable') + '</span>';
-    if (e.kind === 'expense' && e.status === 'loan') badges += '<span class="badge loan">' + t('loan') + '</span>';
+    if (e.kind === 'expense') {
+      if (e.status === 'loan' || e.status === 'unpaid') badges += '<span class="badge loan">' + t('loan') + '</span>';
+      if (isEntryFixed(e)) badges += '<span class="badge fixed">' + t('fixedBadge') + '</span>';
+    }
     if (e.type === 'Purchase') badges += '<span class="badge buy">' + t('purchase') + '</span>';
     var by = e.enteredBy && e.enteredBy !== state.me.email ? '<span class="tag">👤 ' + esc(userName(e.enteredBy)) + '</span>' : '';
+    var payerInfo = (e.kind === 'expense' && e.payer) ? '<span>💳 ' + esc(e.payer) + '</span>' : '';
     return '<div class="row" onclick="openEntry(\'' + e.kind + '\',\'' + e.id + '\')"><div class="row-main"><div class="row-top"><span class="row-cat">' + esc(catLabel(e.type)) + '</span><span class="row-amt ' + e.kind + '">' + (e.kind === 'income' ? '+' : '−') + money(e.amount) + '</span></div>'
       + '<div class="row-sub"><span class="mono">' + fmtDate(e.date) + '</span><span class="tag">' + esc(truckName(e.truckId)) + '</span>' + by + badges
-      + (e.party ? '<span>· ' + esc(e.party) + '</span>' : '') + (e.note ? '<span>· ' + esc(e.note) + '</span>' : '') + (e.interest > 0 ? '<span>· ' + t('interest') + ' ' + money(e.interest) + '</span>' : '')
+      + (e.party ? '<span>· ' + esc(e.party) + '</span>' : '') + payerInfo + (e.note ? '<span>· ' + esc(e.note) + '</span>' : '') + (e.interest > 0 ? '<span>· ' + t('interest') + ' ' + money(e.interest) + '</span>' : '')
       + (e.photo ? '<span>📷</span>' : '') + (isPending(e.id) ? '<span class="st wait">⏳</span>' : '') + '</div></div></div>';
   }).join('') + '</div>';
 }
 
-// ---------- ADMIN: trucks ----------
+// ---------- ADMIN: trucks & document dates ----------
 function viewTrucks() {
   var h = '<button class="btn amber" style="margin-bottom:14px" onclick="openTruck(\'\')">+ ' + t('addTruck') + '</button>';
   if (!state.trucks.length) return h + '<div class="empty">' + t('noTrucks') + '</div>';
@@ -621,7 +748,25 @@ function viewTrucks() {
     meta.push(num(state.ledger.filter(function (e) { return e.truckId === tr.id; }).length) + ' ' + t('entries'));
     var drivers = state.users.filter(function (u) { return u.truckId === tr.id; }).map(function (u) { return esc(u.name); });
     if (drivers.length) meta.push('👤 ' + drivers.join(', '));
-    return '<div class="tcard' + (tr.active ? '' : ' off') + '" onclick="openTruck(\'' + tr.id + '\')"><div class="tcard-top"><span class="tcard-name">' + esc(tr.name) + '</span>' + (tr.active ? '' : '<span class="tag">' + t('inactive') + '</span>') + '</div><div class="tcard-meta">' + meta.join(' · ') + '</div></div>';
+    
+    // Doc badges
+    var docBadges = [];
+    [
+      { name: 'Fitness', date: tr.fitnessDate },
+      { name: 'Tax', date: tr.taxDate },
+      { name: 'Route', date: tr.routeDate }
+    ].forEach(function(d){
+      if(!d.date) return;
+      var du = daysUntil(d.date);
+      var cls = du < 0 ? 'doc-pill over' : (du <= 30 ? 'doc-pill soon' : 'doc-pill');
+      var txt = d.name + ': ' + (du < 0 ? t('expired') : du + 'd');
+      docBadges.push('<span class="' + cls + '">' + txt + '</span>');
+    });
+
+    return '<div class="tcard' + (tr.active ? '' : ' off') + '" onclick="openTruck(\'' + tr.id + '\')"><div class="tcard-top"><span class="tcard-name">' + esc(tr.name) + '</span>' + (tr.active ? '' : '<span class="tag">' + t('inactive') + '</span>') + '</div>'
+      + '<div class="tcard-meta">' + meta.join(' · ') + '</div>'
+      + (docBadges.length ? '<div class="tcard-docs">' + docBadges.join('') + '</div>' : '')
+      + '</div>';
   }).join('');
 }
 
@@ -629,12 +774,13 @@ function viewTrucks() {
 function viewDues() {
   var byDue = function (a, b) { return (a.dueDate || a.date) > (b.dueDate || b.date) ? 1 : -1; };
   var rcv = state.ledger.filter(function (e) { return e.kind === 'income' && e.status === 'receivable'; }).sort(byDue);
-  var loans = state.ledger.filter(function (e) { return e.kind === 'expense' && e.status === 'loan'; }).sort(byDue);
+  var loans = state.ledger.filter(function (e) { return e.kind === 'expense' && (e.status === 'loan' || e.status === 'unpaid'); }).sort(byDue);
   var h = '<div class="grid2">' + card(t('receivables'), money(sum(rcv, amt)), 'pos') + card(t('loans'), money(sum(loans, function (e) { return e.amount + (e.interest || 0); })), 'neg') + '</div>';
   var item = function (e, isLoan) {
     var meta = [fmtDate(e.date), truckName(e.truckId), catLabel(e.type)]; if (e.dueDate) meta.push(t('dueDate') + ': ' + fmtDate(e.dueDate));
+    if (isLoan && e.payer) meta.push(t('payer') + ': ' + e.payer);
     var total = e.amount + (isLoan ? (e.interest || 0) : 0);
-    return '<div class="due"><div class="due-top"><span class="due-party">' + esc(e.party || catLabel(e.type)) + '</span><span class="due-amt ' + (isLoan ? 'neg' : 'pos') + '">' + money(total) + '</span></div>'
+    return '<div class="due"><div class="due-top"><span class="due-party">' + esc(e.party || e.payer || catLabel(e.type)) + '</span><span class="due-amt ' + (isLoan ? 'neg' : 'pos') + '">' + money(total) + '</span></div>'
       + '<div class="due-meta">' + meta.map(esc).join(' · ') + '</div>' + (isLoan && e.interest > 0 ? '<div class="due-meta">' + t('amount') + ' ' + money(e.amount) + ' + ' + t('interest') + ' ' + money(e.interest) + '</div>' : '')
       + '<button class="due-btn ' + (isLoan ? 'pay' : 'rcv') + '" onclick="markStatus(\'' + e.id + '\',\'' + (isLoan ? 'paid' : 'received') + '\')">' + (isLoan ? t('markPaid') : t('markReceived')) + '</button></div>';
   };
@@ -651,13 +797,22 @@ function markStatus(id, st) {
 
 // ---------- ADMIN: settings ----------
 function viewSettings() {
-  var h = '<div class="sec-title">' + t('language') + '</div><div class="segfull" style="margin:0 0 16px">' + tbtn(lang === 'en', 'English', "setLang('en')") + tbtn(lang === 'bn', 'বাংলা', "setLang('bn')") + '</div>';
+  var curTarget = (state.settings && state.settings.targetMonthlyProfit) || '';
+  var h = '<div class="sec-title">' + t('targetMonth') + '</div>'
+    + '<div class="amtwrap" style="margin-bottom:14px"><span class="amtsym">' + sym() + '</span><input class="amtin" style="font-size:22px" id="st_target" type="number" inputmode="decimal" placeholder="0" value="' + esc(curTarget) + '" onchange="saveMonthlyTarget(this.value)"></div>';
+  
+  h += '<div class="sec-title">' + t('language') + '</div><div class="segfull" style="margin:0 0 16px">' + tbtn(lang === 'en', 'English', "setLang('en')") + tbtn(lang === 'bn', 'বাংলা', "setLang('bn')") + '</div>';
   h += '<div class="sec-title">' + t('currency') + '</div><select class="input" style="margin-bottom:18px" onchange="setCurrency(this.value)">' + CUR.map(function (c) { return '<option value="' + c[0] + '"' + (state.settings.currency === c[0] ? ' selected' : '') + '>' + c[0] + ' (' + c[1] + ')</option>'; }).join('') + '</select>';
   h += '<div class="sec-title">' + t('people') + '</div>' + peopleList() + '<button class="btnsm" style="margin:10px 0 20px" onclick="openUser(-1)">+ ' + t('addPerson') + '</button>';
   h += '<div class="sec-title">' + t('incomeTypes') + '</div><p class="hint">' + t('showDrivers') + '</p>' + typeManager('income');
   h += '<div class="sec-title" style="margin-top:18px">' + t('expenseTypes') + '</div>' + typeManager('expense');
   h += '<button class="btn ghost" style="margin-top:26px" onclick="logout()">' + t('logout') + ' (' + esc(state.me.email) + ')</button>';
   return h;
+}
+function saveMonthlyTarget(v) {
+  state.settings.targetMonthlyProfit = parseFloat(v) || 0;
+  adminCall('saveSettings', state.settings);
+  toast(t('saved'));
 }
 function peopleList() {
   if (!state.users.length) return '';
@@ -671,7 +826,7 @@ function typeManager(kind) {
     return '<span class="tchip' + (ty.driver ? '' : ' hid') + '"><span onclick="toggleTypeDriver(\'' + ty.id + '\')">' + (ty.driver ? '👁 ' : '🚫 ') + esc(catLabel(ty.name)) + '</span><button onclick="delType(\'' + ty.id + '\')" aria-label="' + t('del') + '">✕</button></span>';
   }).join('') + '</div><div class="addrow"><input class="input" id="newtype_' + kind + '" placeholder="' + t('typeName') + '"><button class="btnsm" onclick="addType(\'' + kind + '\')">' + t('add') + '</button></div>';
 }
-function setCurrency(c) { state.settings.currency = c; render(); adminCall('saveSettings', { currency: c }); }
+function setCurrency(c) { state.settings.currency = c; render(); adminCall('saveSettings', state.settings); }
 function addType(kind) { var name = val('newtype_' + kind).trim(); if (!name) return; var ty = { id: uid(), kind: kind, name: name, driver: true }; state.types.push(ty); render(); adminCall('saveType', ty); }
 function delType(id) { showConfirm(t('del') + '?', function () { state.types = state.types.filter(function (x) { return x.id !== id; }); closeModal(); render(); adminCall('deleteType', { id: id }); }); }
 function toggleTypeDriver(id) { var ty = findType(id); if (!ty) return; ty.driver = !ty.driver; render(); adminCall('saveType', ty); }
@@ -682,35 +837,67 @@ function openEntry(kind, id) {
   var trucks = state.trucks.filter(function (x) { return x.active || (e && x.id === e.truckId); });
   if (!trucks.length && !e) { toast(t('addTruckFirst')); return go('trucks'); }
   formKind = e ? e.kind : kind; editingId = id || '';
+  formCostType = e ? (e.costNature || (e.type === 'Purchase' ? 'fixed' : 'op')) : (formKind === 'expense' ? 'op' : '');
   formStatus = e ? e.status : (formKind === 'income' ? 'received' : 'paid');
   var truckSel = e ? e.truckId : trucks[0].id;
   var names = typesFor(formKind).map(function (x) { return x.name; });
-  if (e && names.indexOf(e.type) < 0) names.unshift(e.type);   // keep a type that was deleted later
+  if (e && names.indexOf(e.type) < 0) names.unshift(e.type);
   if (!names.length) names = ['Other'];
   var typeSel = e ? e.type : names[0];
   var truckOpts = trucks.map(function (tr) { return '<option value="' + tr.id + '"' + (truckSel === tr.id ? ' selected' : '') + '>' + esc(tr.name) + '</option>'; }).join('');
   if (e && !findTruck(e.truckId)) truckOpts = '<option value="' + esc(e.truckId) + '" selected>—</option>' + truckOpts;
   var inc = formKind === 'income';
+
   var h = '<div class="sheet-head"><h3>' + (e ? t('editEntry') : inc ? t('addIncome') : t('addCost')) + '</h3><button class="iconbtn" onclick="closeModal()">✕</button></div>';
   h += '<label class="label">' + t('amount') + '</label><div class="amtwrap"><span class="amtsym">' + sym() + '</span><input class="amtin" id="f_amount" type="number" inputmode="decimal" placeholder="0" value="' + (e ? e.amount : '') + '"></div>';
   h += '<label class="label">' + t('truck') + '</label><select class="input" id="f_truck">' + truckOpts + '</select>';
-  h += '<label class="label">' + t('type') + '</label><select class="input" id="f_type">' + names.map(function (n) { return '<option value="' + esc(n) + '"' + (typeSel === n ? ' selected' : '') + '>' + esc(catLabel(n)) + '</option>'; }).join('') + '</select>';
+  h += '<label class="label">' + t('type') + '</label><select class="input" id="f_type" onchange="onTypeChanged(this.value)">' + names.map(function (n) { return '<option value="' + esc(n) + '"' + (typeSel === n ? ' selected' : '') + '>' + esc(catLabel(n)) + '</option>'; }).join('') + '</select>';
+  
+  // Cost Nature (Operational vs Fixed) for expenses
+  if (!inc) {
+    h += '<label class="label">' + t('costNature') + '</label><div class="segfull" id="costNatureSeg">'
+      + '<button type="button" id="cn_op" class="' + (formCostType === 'op' ? 'on' : '') + '" onclick="setCostNature(\'op\')">' + t('opBadge') + '</button>'
+      + '<button type="button" id="cn_fixed" class="' + (formCostType === 'fixed' ? 'on' : '') + '" onclick="setCostNature(\'fixed\')">' + t('fixedBadge') + '</button>'
+      + '</div>';
+  }
+
   h += '<div class="two"><div><label class="label">' + t('date') + '</label><input class="input" id="f_date" type="date" value="' + (e && e.date ? e.date : todayStr()) + '"></div><div><label class="label">' + t('distanceKm') + '</label><input class="input" id="f_distance" type="number" inputmode="decimal" placeholder="0" value="' + (e && e.distance ? e.distance : '') + '"></div></div>';
+
+  if (!inc) {
+    h += '<label class="label">' + t('whoPaid') + '</label><input class="input" id="f_payer" placeholder="' + t('optional') + '" value="' + (e ? esc(e.payer || '') : esc(state.me.name)) + '">';
+  }
+
   h += '<label class="label">' + t('note') + ' (' + t('optional') + ')</label><input class="input" id="f_note" value="' + (e ? esc(e.note) : '') + '">';
-  var bakiOn = formStatus === 'receivable' || formStatus === 'loan';
-  h += '<label class="label">' + t('status') + '</label><div class="segfull" style="margin-top:0"><button id="st_a" class="' + (bakiOn ? '' : 'on') + '" onclick="setStatus(\'' + (inc ? 'received' : 'paid') + '\')">' + (inc ? t('received') : t('paidByMe')) + '</button><button id="st_b" class="' + (bakiOn ? 'on' : '') + '" onclick="setStatus(\'' + (inc ? 'receivable' : 'loan') + '\')">' + (inc ? t('receivable') : t('paidOther')) + '</button></div>';
-  h += '<div class="cond' + (bakiOn ? ' show' : '') + '" id="condBlock"><label class="label">' + (inc ? t('whoOwes') : t('whoPaid')) + '</label><input class="input" id="f_party" value="' + (e ? esc(e.party) : '') + '">'
+  
+  var bakiOn = formStatus === 'receivable' || formStatus === 'loan' || formStatus === 'unpaid';
+  h += '<label class="label">' + (inc ? t('status') : t('paymentStatus')) + '</label><div class="segfull" style="margin-top:0">'
+    + '<button id="st_a" type="button" class="' + (bakiOn ? '' : 'on') + '" onclick="setStatus(\'' + (inc ? 'received' : 'paid') + '\')">' + (inc ? t('received') : t('isPaid')) + '</button>'
+    + '<button id="st_b" type="button" class="' + (bakiOn ? 'on' : '') + '" onclick="setStatus(\'' + (inc ? 'receivable' : 'unpaid') + '\')">' + (inc ? t('receivable') : t('isUnpaid')) + '</button></div>';
+  
+  h += '<div class="cond' + (bakiOn ? ' show' : '') + '" id="condBlock"><label class="label">' + (inc ? t('whoOwes') : t('party')) + '</label><input class="input" id="f_party" placeholder="' + t('whoName') + '" value="' + (e ? esc(e.party) : '') + '">'
     + '<div class="two">' + (inc ? '' : '<div><label class="label">' + t('interest') + '</label><input class="input" id="f_interest" type="number" inputmode="decimal" placeholder="0" value="' + (e && e.interest ? e.interest : '') + '"></div>')
     + '<div><label class="label">' + t('dueDate') + '</label><input class="input" id="f_due" type="date" value="' + (e && e.dueDate ? e.dueDate : '') + '"></div></div></div>';
+  
   if (e && e.enteredBy) h += '<p class="hint" style="margin-top:14px">' + t('enteredBy') + ': ' + esc(userName(e.enteredBy)) + '</p>';
   if (e && e.photo && e.photo !== 'pending') h += '<a class="btn ghost" style="margin-top:10px" target="_blank" rel="noopener" href="https://drive.google.com/file/d/' + encodeURIComponent(e.photo) + '/view">📷 ' + t('viewPhoto') + '</a>';
   h += '<button class="btn ' + (inc ? 'in' : 'out') + '" style="margin-top:18px" onclick="saveEntryForm()">' + t('save') + '</button>';
   if (e) h += '<button class="btn danger" style="margin-top:10px" onclick="deleteEntryConfirm(\'' + e.id + '\')">' + t('del') + '</button>';
   openModal(h);
 }
+function onTypeChanged(v) {
+  if (formKind === 'expense') {
+    setCostNature(v === 'Purchase' || v === 'Loan/EMI' ? 'fixed' : 'op');
+  }
+}
+function setCostNature(nature) {
+  formCostType = nature;
+  var op = document.getElementById('cn_op'), fx = document.getElementById('cn_fixed');
+  if(op) op.classList.toggle('on', nature === 'op');
+  if(fx) fx.classList.toggle('on', nature === 'fixed');
+}
 function setStatus(v) {
   formStatus = v;
-  var on = v === 'receivable' || v === 'loan';
+  var on = v === 'receivable' || v === 'loan' || v === 'unpaid';
   document.getElementById('condBlock').classList.toggle('show', on);
   document.getElementById('st_a').classList.toggle('on', !on);
   document.getElementById('st_b').classList.toggle('on', on);
@@ -720,10 +907,15 @@ function saveEntryForm() {
   if (!amount || amount <= 0) return toast(t('amount') + ' > 0');
   var old = editingId ? findEntry(editingId) : null;
   var e = { id: editingId || uid(), truckId: val('f_truck'), kind: formKind, type: val('f_type'), amount: Math.round(amount * 100) / 100,
+    costNature: formKind === 'expense' ? (formCostType || 'op') : '',
+    payer: formKind === 'expense' ? (val('f_payer').trim() || state.me.name) : '',
     date: val('f_date') || todayStr(), note: val('f_note').trim(), status: formStatus, party: '', dueDate: '', interest: 0,
     distance: parseFloat(val('f_distance')) || 0, createdAt: old ? old.createdAt : Date.now(), enteredBy: old ? old.enteredBy : state.me.email, photo: old ? old.photo : '' };
-  if (formStatus === 'receivable' || formStatus === 'loan') { e.party = val('f_party').trim(); e.dueDate = val('f_due'); }
-  if (formStatus === 'loan') e.interest = parseFloat(val('f_interest')) || 0;
+  if (formStatus === 'receivable' || formStatus === 'loan' || formStatus === 'unpaid') {
+    e.party = val('f_party').trim();
+    e.dueDate = val('f_due');
+  }
+  if (formStatus === 'loan' || formStatus === 'unpaid') e.interest = parseFloat(val('f_interest')) || 0;
   if (!enqueue({ op: 'save', entry: e })) return;
   var i = findIdx(e.id); if (i >= 0) state.ledger[i] = lite(e); else state.ledger.unshift(lite(e));
   closeModal(); render(); toast(t('saved'));
@@ -735,13 +927,20 @@ function deleteEntryConfirm(id) {
   });
 }
 
-// ---------- ADMIN: truck + person forms ----------
+// ---------- ADMIN: truck form with document validity ----------
 function openTruck(id) {
   var tr = id ? findTruck(id) : null;
   var h = '<div class="sheet-head"><h3>' + (tr ? t('editTruck') : t('addTruck')) + '</h3><button class="iconbtn" onclick="closeModal()">✕</button></div>';
   h += '<label class="label">' + t('truckName') + '</label><input class="input" id="tk_name" value="' + (tr ? esc(tr.name) : '') + '" placeholder="Truck 1">';
   h += '<label class="label">' + t('plate') + '</label><input class="input" id="tk_plate" value="' + (tr ? esc(tr.plate) : '') + '">';
   h += '<div class="two"><div><label class="label">' + t('model') + '</label><input class="input" id="tk_model" value="' + (tr ? esc(tr.model) : '') + '"></div><div><label class="label">' + t('year') + '</label><input class="input" id="tk_year" type="number" value="' + (tr ? esc(tr.year) : '') + '"></div></div>';
+  
+  // Document validity dates
+  h += '<div class="sec-title" style="margin-top:16px">📄 ' + t('docsAlert') + '</div>';
+  h += '<label class="label">' + t('fitnessExp') + '</label><input class="input" id="tk_fitness" type="date" value="' + (tr && tr.fitnessDate ? tr.fitnessDate : '') + '">';
+  h += '<label class="label">' + t('taxExp') + '</label><input class="input" id="tk_tax" type="date" value="' + (tr && tr.taxDate ? tr.taxDate : '') + '">';
+  h += '<label class="label">' + t('routeExp') + '</label><input class="input" id="tk_route" type="date" value="' + (tr && tr.routeDate ? tr.routeDate : '') + '">';
+
   h += '<label class="label">' + t('note') + '</label><input class="input" id="tk_note" value="' + (tr ? esc(tr.note) : '') + '">';
   h += '<label class="check" style="margin-top:14px"><input type="checkbox" id="tk_active"' + (!tr || tr.active ? ' checked' : '') + '> ' + t('active') + '</label>';
   h += '<button class="btn amber" style="margin-top:16px" onclick="saveTruckForm(\'' + (id || '') + '\')">' + t('save') + '</button>';
@@ -750,12 +949,24 @@ function openTruck(id) {
 }
 function saveTruckForm(id) {
   var name = val('tk_name').trim(); if (!name) return toast(t('truckName') + '?');
-  var tk = { id: id || uid(), name: name, plate: val('tk_plate').trim(), model: val('tk_model').trim(), year: val('tk_year').trim(), note: val('tk_note').trim(), active: document.getElementById('tk_active').checked };
+  var tk = {
+    id: id || uid(),
+    name: name,
+    plate: val('tk_plate').trim(),
+    model: val('tk_model').trim(),
+    year: val('tk_year').trim(),
+    fitnessDate: val('tk_fitness'),
+    taxDate: val('tk_tax'),
+    routeDate: val('tk_route'),
+    note: val('tk_note').trim(),
+    active: document.getElementById('tk_active').checked
+  };
   var i = state.trucks.findIndex(function (x) { return x.id === tk.id; });
   if (i >= 0) state.trucks[i] = tk; else state.trucks.push(tk);
   closeModal(); render(); toast(t('saved')); adminCall('saveTruck', tk);
 }
 function deleteTruckConfirm(id) { showConfirm(t('deleteTruckQ'), function () { state.trucks = state.trucks.filter(function (x) { return x.id !== id; }); closeModal(); render(); toast(t('del')); adminCall('deleteTruck', { id: id }); }); }
+
 function openUser(i) {
   var u = i >= 0 ? state.users[i] : null, role = u ? u.role : 'driver', tr = u ? u.truckId : (state.trucks[0] ? state.trucks[0].id : '');
   var h = '<div class="sheet-head"><h3>' + (u ? t('editPerson') : t('addPerson')) + '</h3><button class="iconbtn" onclick="closeModal()">✕</button></div>';
