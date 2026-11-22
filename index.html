@@ -619,15 +619,41 @@ function driverOf(truckId) {
   return state.users.filter(function (u) { return u.role === 'driver' && u.active && u.truckId === truckId; }).map(function (u) { return u.name; }).join(', ');
 }
 // Keeps the auto "Driver pay" cost in step with an income entry. Returns the pay entry (or null).
-function syncAutoPay(inc, on) {
-  var cid = inc.id + '_dp', old = findEntry(cid), p = payPct();
-  if (!on || p <= 0 || inc.kind !== 'income') {
+// ---------- driver pay: auto % of income, but editable ----------
+I18N.en.payAuto = 'Driver pay (auto {p}%, you can change it)';
+I18N.bn.payAuto = 'চালকের বেতন (স্বয়ংক্রিয় {p}%, চাইলে বদলাতে পারেন)';
+I18N.en.payHint = 'Fills in from the amount. Type another number to change it, or 0 for no driver pay.';
+I18N.bn.payHint = 'পরিমাণ থেকে নিজে থেকেই বসে যায়। অন্য সংখ্যা লিখে বদলাতে পারেন, চালকের বেতন না থাকলে ০ লিখুন।';
+var payManual = false;
+function autoPayFor(a) { var n = parseFloat(a); return n > 0 ? Math.round(n * payPct()) / 100 : 0; }
+function payField(payVal, manual) {
+  payManual = !!manual;
+  return '<label class="label">👷 ' + t('payAuto').replace('{p}', payPct()) + '</label>'
+    + '<div class="addrow" style="margin-top:0;align-items:stretch"><div class="amtwrap" style="flex:1;padding:2px 12px"><span class="amtsym" style="font-size:17px">' + sym() + '</span>'
+    + '<input class="amtin" style="font-size:20px" id="pay_amt" type="number" inputmode="decimal" min="0" placeholder="0" value="' + esc(payVal) + '" oninput="payManual=true"></div>'
+    + '<button type="button" class="btnsm" onclick="resetPay()">↺ ' + payPct() + '%</button></div>'
+    + '<p class="hint" style="margin:6px 2px 0">' + t('payHint') + '</p>';
+}
+function onAmtInput() {
+  if (payManual) return;
+  var p = document.getElementById('pay_amt'); if (!p) return;
+  var v = autoPayFor(val(document.getElementById('d_amount') ? 'd_amount' : 'f_amount'));
+  p.value = v ? v : '';
+}
+function resetPay() { payManual = false; onAmtInput(); }
+function readPay() { var p = document.getElementById('pay_amt'); return p ? Math.max(0, round2(parseFloat(p.value) || 0)) : null; }
+// Keeps the linked "Driver pay" cost in step with an income. payAmount 0 = no driver pay. Returns the pay entry or null.
+function syncAutoPay(inc, payAmount) {
+  var cid = inc.id + '_dp', old = findEntry(cid);
+  if (!(payAmount > 0) || inc.kind !== 'income') {
     if (old) { state.ledger = state.ledger.filter(function (x) { return x.id !== cid; }); enqueue({ op: 'delete', id: cid }); }
     return null;
   }
+  var isAuto = payAmount === autoPayFor(inc.amount);
   var c = {
-    id: cid, linkId: inc.id, truckId: inc.truckId, kind: 'expense', type: 'Driver pay', amount: Math.round(inc.amount * p) / 100,
-    date: inc.date, endDate: inc.endDate || '', note: p + '% × ' + money(inc.amount),
+    id: cid, linkId: inc.id, truckId: inc.truckId, kind: 'expense', type: 'Driver pay', amount: round2(payAmount),
+    date: inc.date, endDate: inc.endDate || '',
+    note: isAuto ? payPct() + '% × ' + money(inc.amount) : t('income') + ' ' + money(inc.amount),
     status: old ? old.status : 'paid', party: old && old.party ? old.party : driverOf(inc.truckId),
     dueDate: old ? (old.dueDate || '') : '', interest: old ? (old.interest || 0) : 0, distance: 0,
     createdAt: old ? old.createdAt : (inc.createdAt || Date.now()), enteredBy: inc.enteredBy || state.me.email,
