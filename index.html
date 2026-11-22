@@ -55,7 +55,7 @@ body.bn{font-family:'Noto Sans Bengali','Space Grotesk',system-ui,sans-serif;}
 .target-title{font-size:12px;letter-spacing:.05em;text-transform:uppercase;font-weight:600;color:var(--muted);}
 .target-bar-wrap{height:10px;background:var(--paper);border-radius:6px;overflow:hidden;margin-bottom:8px;}
 .target-bar{height:100%;border-radius:6px;transition:width .3s ease;}
-.target-sub{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);}
+.target-sub{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);flex-wrap:wrap;}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;}
 .card-k{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:5px;}
@@ -78,14 +78,17 @@ body.bn{font-family:'Noto Sans Bengali','Space Grotesk',system-ui,sans-serif;}
 /* alerts */
 .alert-card{background:#FEF3E2;border:1px solid #FCD9A5;border-radius:14px;padding:12px 14px;margin-bottom:14px;}
 .alert-card.danger{background:#FDECEA;border-color:#F8B4AB;}
+.alert-card.ok{background:#E7F6EF;border-color:#A7E0C4;padding:10px 14px;}
 .alert-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:#8A5A08;margin-bottom:6px;}
 .alert-card.danger .alert-head{color:var(--out);}
+.alert-card.ok .alert-head{color:#0B7C54;margin:0;}
 .alert-item{font-size:12.5px;color:#5A3F07;margin-top:4px;display:flex;justify-content:space-between;gap:8px;}
 .alert-card.danger .alert-item{color:#6D1D13;}
 /* lists */
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
 .act{display:flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:12px;padding:13px;font-family:inherit;font-size:14.5px;font-weight:600;cursor:pointer;color:#fff;}
 .act.in{background:var(--in);box-shadow:0 3px 0 #0B7C54;} .act.out{background:var(--out);box-shadow:0 3px 0 #A83421;}
+.act.gen{grid-column:1/-1;background:#33414C;box-shadow:0 3px 0 #1B262E;}
 .list{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
 .row{display:flex;align-items:center;gap:11px;padding:13px 14px;border-top:1px solid var(--line);cursor:pointer;} .row:first-child{border-top:0;} .row:active{background:#F6F8FA;}
 .row-main{flex:1;min-width:0;}
@@ -96,6 +99,7 @@ body.bn{font-family:'Noto Sans Bengali','Space Grotesk',system-ui,sans-serif;}
 .badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:20px;}
 .badge.rcv{background:#FEF3E2;color:#8A5A08;} .badge.loan{background:#FDECEA;color:#A83421;} .badge.buy{background:#EAF1FD;color:#215BB8;}
 .badge.fixed{background:#EDE9FE;color:#5B21B6;} .badge.warn{background:#FDECEA;color:#991B1B;}
+.badge.auto{background:#E7F6EF;color:#0B7C54;} .badge.gen{background:#E9EDF1;color:#33414C;}
 .tag{font-size:11px;color:var(--muted);background:var(--paper);padding:2px 7px;border-radius:6px;}
 .st{font-size:11.5px;font-weight:600;} .st.wait{color:#8A5A08;} .st.ok{color:var(--in);}
 .empty{padding:34px 20px;text-align:center;color:var(--muted);font-size:14px;line-height:1.5;}
@@ -141,6 +145,7 @@ body.bn{font-family:'Noto Sans Bengali','Space Grotesk',system-ui,sans-serif;}
 .sheet-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;}
 .sheet-head h3{font-size:19px;font-weight:600;display:flex;align-items:center;gap:8px;}
 .label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.04em;}
+.req{color:var(--out);}
 .amtwrap{display:flex;align-items:center;background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:6px 14px;}
 .amtsym{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;color:var(--muted);margin-right:8px;}
 .amtin{flex:1;border:0;background:transparent;font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:var(--text);outline:none;width:100%;padding:6px 0;}
@@ -155,7 +160,9 @@ select.input{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .segfull.big button{padding:14px 8px;font-size:15px;}
 .cond{display:none;} .cond.show{display:block;}
 .check{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:500;cursor:pointer;}
-.check input{width:20px;height:20px;accent-color:var(--in);}
+.check input{width:20px;height:20px;accent-color:var(--in);flex-shrink:0;}
+.dpwrap{border-radius:12px;padding:2px;transition:box-shadow .2s;}
+.dpwrap.err{box-shadow:0 0 0 2.5px var(--out);}
 /* login + driver */
 .login{text-align:center;padding:44px 12px;}
 .login-logo{width:76px;height:76px;margin:0 auto 16px;border-radius:20px;background:var(--amber);color:var(--ink);display:grid;place-items:center;box-shadow:0 4px 0 var(--amber2);}
@@ -174,7 +181,13 @@ select.input{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg 
 .ichip{border:1.5px solid var(--line);background:var(--card);border-radius:20px;padding:9px 14px;font-family:inherit;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;}
 .ichip.on{background:var(--ink);color:#fff;border-color:var(--ink);}
 .photo-btn{display:flex;align-items:center;gap:10px;justify-content:center;border:1.5px dashed #B9C4CE;border-radius:12px;padding:12px;margin:12px 0;cursor:pointer;font-weight:600;color:var(--muted);}
-.photo-btn img{width:56px;height:56px;object-fit:cover;border-radius:8px;}
+.photo-btn.off{opacity:.45;pointer-events:none;}
+.photo-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 8px;}
+.photo-row .photo-btn{margin:0;}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+.thumb{position:relative;width:66px;height:66px;border-radius:9px;overflow:hidden;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;font-size:12px;color:var(--muted);text-decoration:none;}
+.thumb img{width:100%;height:100%;object-fit:cover;}
+.thumb button{position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;border:0;background:rgba(16,27,36,.78);color:#fff;font-size:12px;cursor:pointer;display:grid;place-items:center;}
 .done{text-align:center;padding:30px 0 20px;}
 .done-mark{width:90px;height:90px;border-radius:50%;background:var(--in);color:#fff;font-size:52px;display:grid;place-items:center;margin:0 auto 14px;animation:pop .3s ease;}
 .done-amt{font-size:28px;font-weight:700;} .done-amt.income{color:var(--in);} .done-amt.expense{color:var(--out);}
@@ -215,7 +228,7 @@ var I18N = {
     topIncome:'Top income source', topCost:'Top cost center', trend:'Income vs cost', breakdownCost:'Cost breakdown', breakdownIncome:'Income breakdown',
     addIncome:'Add income', addCost:'Add cost', editEntry:'Edit entry', noEntries:'No entries yet.', entries:'entries',
     receivable:'Receivable', loan:'Loan/Unpaid', purchase:'Purchase', received:'Received', paidByMe:'Paid by me', paidOther:'Someone else paid',
-    whoOwes:'Who owes you (name)', whoPaid:'Who paid (name)', dueDate:'Due date', interest:'Interest', markReceived:'Mark received', markPaid:'Mark paid',
+    whoOwes:'Who owes you (name)', whoPaid:'Who paid (name)', party:'Owed to (name)', dueDate:'Due date', interest:'Interest', markReceived:'Mark received', markPaid:'Mark paid',
     noReceivables:'No pending receivables.', noLoans:'No outstanding loans/payables.', receivables:'Receivables', loans:'Payable / Loans',
     addTruck:'Add truck', editTruck:'Edit truck', plate:'Number plate', model:'Model', year:'Year', active:'Active', inactive:'Inactive', noTrucks:'No trucks yet.', truckName:'Truck name',
     incomeTypes:'Income types', expenseTypes:'Cost types', typeName:'New type name', showDrivers:'Tap a type to show 👁 or hide 🚫 it on drivers\u2019 phones.',
@@ -231,14 +244,22 @@ var I18N = {
     storageFull:'Phone storage is full. Connect to the internet so waiting entries can send.',
     confirmLogoutPending:'{n} entries have not been sent and will be lost. Sign out anyway?', loading:'Loading…',
     setupNeeded:'Setup not finished: open index.html and paste your API_URL and CLIENT_ID.',
-    // Enhancement features
     fitnessExp:'Fitness validity', taxExp:'Tax token validity', routeExp:'Route permit validity',
     docsAlert:'Document Expiry Alerts (Within 30 Days)', expired:'Expired', expSoon:'Expires in {d}d',
     costScope:'Cost scope', opCost:'Operational', allCost:'All (incl. Fixed)', fixedBadge:'Fixed Cost', opBadge:'Operational',
     costNature:'Cost nature', natureOp:'Operational Cost (trip, maintenance, etc.)', natureFixed:'Fixed Cost (purchase, asset, setup)',
     targetMonth:'Monthly Net Profit Target', targetProgress:'Monthly Profit Target Progress',
     targetMet:'Above target by', targetShort:'Short of target by', noTarget:'No monthly target set', setTarget:'Set target in Settings',
-    paymentStatus:'Payment Status', isPaid:'Paid', isUnpaid:'Unpaid (Payable)', payer:'Who paid'
+    paymentStatus:'Payment Status', isPaid:'Paid', isUnpaid:'Unpaid (Payable)', payer:'Who paid',
+    oneDay:'One day', dateRange:'Several days', fromDate:'From', toDate:'To',
+    pickDate:'Please select the date', pickRange:'Please select both start and end dates',
+    badRange:'End date cannot be before start date', noFuture:'Future dates are not allowed', dayCount:'{n} days', dayOne:'1 day',
+    gapTitle:'Income not entered yet (up to today)', gapNever:'No income entered yet', gapOk:'Income entered up to today',
+    general:'General (all trucks)', generalShort:'General', addGeneral:'Add general cost (manager, office…)',
+    generalHint:'Not tied to any truck. Counted only under "All trucks".',
+    autoPay:'Add driver pay automatically ({p}%)', autoBadge:'Auto', payPct:'Driver pay (% of trip income)',
+    payPctHint:'When income is entered, a "Driver pay" cost of this % is added for the same truck and dates. 0 = off.',
+    camera:'Camera', gallery:'Gallery', photos:'Receipt photos', photosMax:'Up to {n} photos', photoPending:'Photos will upload when online.'
   },
   bn: {
     appName:'ট্রাক ট্র্যাকার', dashboard:'ড্যাশবোর্ড', ledger:'লেনদেন', trucks:'ট্রাক', dues:'বাকি', settings:'সেটিংস',
@@ -250,7 +271,7 @@ var I18N = {
     topIncome:'সর্বোচ্চ আয়ের উৎস', topCost:'সর্বোচ্চ খরচের খাত', trend:'আয় বনাম খরচ', breakdownCost:'খরচের বিবরণ', breakdownIncome:'আয়ের বিবরণ',
     addIncome:'আয় যোগ করুন', addCost:'খরচ যোগ করুন', editEntry:'এন্ট্রি সম্পাদনা', noEntries:'এখনো কোনো এন্ট্রি নেই।', entries:'এন্ট্রি',
     receivable:'প্রাপ্য', loan:'বাকি/দেনা', purchase:'ক্রয়', received:'প্রাপ্ত', paidByMe:'আমি দিয়েছি', paidOther:'অন্যজন দিয়েছেন',
-    whoOwes:'কে দেবে (নাম)', whoPaid:'কে দিয়েছেন (নাম)', dueDate:'পরিশোধের শেষ তারিখ', interest:'সুদ', markReceived:'প্রাপ্ত চিহ্নিত করুন', markPaid:'পরিশোধিত চিহ্নিত করুন',
+    whoOwes:'কে দেবে (নাম)', whoPaid:'কে দিয়েছেন (নাম)', party:'কাকে দিতে হবে (নাম)', dueDate:'পরিশোধের শেষ তারিখ', interest:'সুদ', markReceived:'প্রাপ্ত চিহ্নিত করুন', markPaid:'পরিশোধিত চিহ্নিত করুন',
     noReceivables:'কোনো বাকি প্রাপ্য নেই।', noLoans:'কোনো অপরিশোধিত বাকি নেই।', receivables:'প্রাপ্য বাকি', loans:'পরিশোধযোগ্য দেনা',
     addTruck:'ট্রাক যোগ করুন', editTruck:'ট্রাক সম্পাদনা', plate:'নম্বর প্লেট', model:'মডেল', year:'সাল', active:'সক্রিয়', inactive:'নিষ্ক্রিয়', noTrucks:'কোনো ট্রাক নেই।', truckName:'ট্রাকের নাম',
     incomeTypes:'আয়ের ধরন', expenseTypes:'খরচের ধরন', typeName:'নতুন ধরনের নাম', showDrivers:'চালকদের ফোনে দেখাতে 👁 বা লুকাতে 🚫 ধরনের উপর চাপুন।',
@@ -266,21 +287,29 @@ var I18N = {
     storageFull:'ফোনের জায়গা ভরে গেছে। অপেক্ষার এন্ট্রি পাঠাতে ইন্টারনেট চালু করুন।',
     confirmLogoutPending:'{n}টি এন্ট্রি এখনো পাঠানো হয়নি, সেগুলো হারিয়ে যাবে। তবুও সাইন আউট করবেন?', loading:'লোড হচ্ছে…',
     setupNeeded:'সেটআপ শেষ হয়নি: index.html খুলে API_URL ও CLIENT_ID বসান।',
-    // Enhancement features
     fitnessExp:'ফিটনেস মেয়াদ', taxExp:'ট্যাক্স টোকেন মেয়াদ', routeExp:'রুট পারমিট মেয়াদ',
     docsAlert:'কাগজপত্রের মেয়াদ শেষের অ্যালার্ট (৩০ দিনের মধ্যে)', expired:'মেয়াদ শেষ!', expSoon:'{d} দিন বাকি',
     costScope:'খরচের হিসাব', opCost:'পরিচালন খরচ', allCost:'সব (স্থায়ীসহ)', fixedBadge:'স্থায়ী খরচ', opBadge:'পরিচালন',
     costNature:'খরচের ধরন', natureOp:'পরিচালন খরচ (ট্রিপ, তেল, মেরামত)', natureFixed:'স্থায়ী খরচ (ক্রয়, নতুন পার্টস, স্থায়ী)',
     targetMonth:'মাসিক নিট লাভের লক্ষ্যমাত্রা', targetProgress:'মাসিক লাভের লক্ষ্যমাত্রার অগ্রগতি',
     targetMet:'লক্ষ্যমাত্রার চেয়ে বেশি', targetShort:'লক্ষ্যমাত্রার ঘাটতি', noTarget:'কোনো লক্ষ্যমাত্রা সেট করা নেই', setTarget:'সেটিংসে লক্ষ্যমাত্রা দিন',
-    paymentStatus:'পরিশোধের অবস্থা', isPaid:'পরিশোধিত', isUnpaid:'অপরিশোধিত (বাকি)', payer:'কে টাকা দিয়েছেন'
+    paymentStatus:'পরিশোধের অবস্থা', isPaid:'পরিশোধিত', isUnpaid:'অপরিশোধিত (বাকি)', payer:'কে টাকা দিয়েছেন',
+    oneDay:'এক দিনের', dateRange:'কয়েক দিনের', fromDate:'শুরুর তারিখ', toDate:'শেষের তারিখ',
+    pickDate:'তারিখ বেছে নিন', pickRange:'শুরু ও শেষের তারিখ দুটোই বেছে নিন',
+    badRange:'শেষের তারিখ শুরুর তারিখের আগে হতে পারে না', noFuture:'ভবিষ্যতের তারিখ দেওয়া যাবে না', dayCount:'{n} দিন', dayOne:'1 দিন',
+    gapTitle:'আজ পর্যন্ত যে দিনগুলোর আয় এন্ট্রি হয়নি', gapNever:'এখনো কোনো আয় এন্ট্রি হয়নি', gapOk:'আজ পর্যন্ত সব আয় এন্ট্রি করা হয়েছে',
+    general:'সাধারণ (সব ট্রাক)', generalShort:'সাধারণ', addGeneral:'সাধারণ খরচ যোগ করুন (ম্যানেজার, অফিস…)',
+    generalHint:'কোনো নির্দিষ্ট ট্রাকের খরচ নয়। শুধু "সব ট্রাক"-এর হিসাবে যোগ হবে।',
+    autoPay:'চালকের বেতন স্বয়ংক্রিয়ভাবে যোগ হবে ({p}%)', autoBadge:'স্বয়ংক্রিয়', payPct:'চালকের বেতন (ট্রিপ আয়ের %)',
+    payPctHint:'আয় এন্ট্রি করলে একই ট্রাক ও তারিখে এই হারে "চালকের বেতন" খরচ নিজে থেকেই যোগ হবে। ০ দিলে বন্ধ থাকবে।',
+    camera:'ক্যামেরা', gallery:'গ্যালারি', photos:'রসিদের ছবি', photosMax:'সর্বোচ্চ {n}টি ছবি', photoPending:'ইন্টারনেট পেলে ছবি আপলোড হবে।'
   }
 };
-var CAT_BN = {Fuel:'জ্বালানি',Maintenance:'রক্ষণাবেক্ষণ',Repair:'মেরামত',Tyres:'টায়ার',Tolls:'টোল',Insurance:'বীমা','Driver pay':'চালকের বেতন',Permit:'পারমিট',Parking:'পার্কিং',Fine:'জরিমানা',Purchase:'ক্রয়','Loan/EMI':'ঋণ/কিস্তি',Other:'অন্যান্য',Freight:'মালভাড়া',Trip:'ট্রিপ',Contract:'চুক্তি',Rental:'ভাড়া',Interest:'সুদ'};
+var CAT_BN = {Fuel:'জ্বালানি',Maintenance:'রক্ষণাবেক্ষণ',Repair:'মেরামত',Tyres:'টায়ার',Tolls:'টোল',Insurance:'বীমা','Driver pay':'চালকের বেতন',Permit:'পারমিট',Parking:'পার্কিং',Fine:'জরিমানা',Purchase:'ক্রয়','Loan/EMI':'ঋণ/কিস্তি',Other:'অন্যান্য',Freight:'মালভাড়া',Trip:'ট্রিপ',Contract:'চুক্তি',Rental:'ভাড়া',Interest:'সুদ','Manager salary':'ম্যানেজারের বেতন'};
 var MON = { en:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], bn:['জানু','ফেব্রু','মার্চ','এপ্রি','মে','জুন','জুলা','আগ','সেপ্টে','অক্টো','নভে','ডিসে'] };
 var TRUCK = '<path d="M10 17h4V5H2v12h3"/><path d="M20 17h2v-3.34a4 4 0 0 0-1.17-2.83L19 9h-5v8h1"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/>';
 var REFRESH = '<path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>';
-var ICON = {Fuel:'⛽',Tolls:'🚧',Repair:'🔧',Maintenance:'🛠️',Tyres:svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/>','1em',2.6),Parking:'🅿️',Fine:'👮',Insurance:'🛡️','Driver pay':'👷',Permit:'📄',Purchase:'🛒','Loan/EMI':'🏦',Other:'📦',Freight:'🚚',Trip:'🛣️',Contract:'📝',Rental:'🔑'};
+var ICON = {Fuel:'⛽',Tolls:'🚧',Repair:'🔧',Maintenance:'🛠️',Tyres:svg('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/>','1em',2.6),Parking:'🅿️',Fine:'👮',Insurance:'🛡️','Driver pay':'👷',Permit:'📄',Purchase:'🛒','Loan/EMI':'🏦',Other:'📦',Freight:'🚚',Trip:'🛣️',Contract:'📝',Rental:'🔑','Manager salary':'👔'};
 var CUR = [["BDT","৳"],["INR","₹"],["PKR","₨"],["NPR","Rs"],["LKR","Rs"],["USD","$"],["EUR","€"],["GBP","£"],["NGN","₦"],["KES","KSh"],["GHS","GH₵"],["ZAR","R"],["AED","AED"],["SAR","SAR"],["MYR","RM"],["IDR","Rp"],["PHP","₱"],["CAD","C$"],["AUD","A$"],["EGP","E£"]];
 var SYM = {}; CUR.forEach(function (c) { SYM[c[0]] = c[1]; });
 var NAV = [
@@ -292,14 +321,16 @@ var NAV = [
 ];
 
 // ================= 3. State =================
-var state = { me: null, trucks: [], types: [], ledger: [], users: [], settings: { currency: 'BDT', language: 'bn', targetMonthlyProfit: 0 } };
+var state = { me: null, trucks: [], types: [], ledger: [], users: [], settings: { currency: 'BDT', language: 'bn', targetMonthlyProfit: 0, driverPayPct: 20 } };
 var token = localStorage.getItem('tt_token') || '';
 var queue = readJSON('tt_queue', []);
 var lang = localStorage.getItem('tt_lang') || 'bn';
 var screen = 'dashboard', dashTruck = 'all', dashPeriod = 'month', dashScope = 'op', logTruck = 'all', logKind = 'all', logSearch = '';
 var formKind = 'income', formCostType = 'op', formStatus = 'received', editingId = '', form = {};
+var dp = { mode: 'day', date: '', from: '', to: '' };
 var flushing = false, toastT = null;
-var PERMANENT = ['amount', 'forbidden', 'noTruck', 'unknown', 'email', 'self'];
+var GENERAL = 'general', MAX_PHOTOS = 6;
+var PERMANENT = ['amount', 'forbidden', 'noTruck', 'unknown', 'email', 'self', 'date'];
 
 // ================= 4. Helpers =================
 function t(k) { return (I18N[lang] && I18N[lang][k]) || I18N.en[k] || k; }
@@ -310,31 +341,50 @@ function store(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return 
 function pad(n) { return n < 10 ? '0' + n : '' + n; }
 function ymd(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
 function todayStr() { return ymd(new Date()); }
+function dayOffset(n) { var d = new Date(); d.setDate(d.getDate() - n); return ymd(d); }
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
 function val(id) { var el = document.getElementById(id); return el ? el.value : ''; }
 function sym() { return SYM[state.settings.currency] || state.settings.currency + ' '; }
 function grpLoc() { return ['BDT','INR','PKR','LKR','NPR'].indexOf(state.settings.currency) >= 0 ? 'en-IN' : 'en-US'; }
 function money(n) { return sym() + new Intl.NumberFormat(grpLoc(), { maximumFractionDigits: 2 }).format(Math.round((n || 0) * 100) / 100); }
 function num(n) { return new Intl.NumberFormat(grpLoc(), { maximumFractionDigits: 0 }).format(n || 0); }
+function round2(n) { return Math.round(n * 100) / 100; }
 function catLabel(n) { return (lang === 'bn' && CAT_BN[n]) ? CAT_BN[n] : n; }
 function icon(n) { return ICON[n] || '🧾'; }
 function findTruck(id) { return state.trucks.find(function (x) { return x.id === id; }); }
-function truckName(id) { var tr = findTruck(id); return tr ? tr.name : '—'; }
+function truckName(id) { if (id === GENERAL) return t('generalShort'); var tr = findTruck(id); return tr ? tr.name : '—'; }
 function findType(id) { return state.types.find(function (x) { return x.id === id; }); }
 function findEntry(id) { return state.ledger.find(function (x) { return x.id === id; }); }
 function findIdx(id) { return state.ledger.findIndex(function (x) { return x.id === id; }); }
 function typesFor(kind) { return state.types.filter(function (x) { return x.kind === kind; }); }
 function userName(email) { var u = state.users.find(function (x) { return x.email === email; }); return u ? u.name : (email || '').split('@')[0]; }
 function fmtDate(s) { if (!s) return ''; var a = s.split('-'); if (a.length < 3) return s; return parseInt(a[2], 10) + ' ' + MON[lang][parseInt(a[1], 10) - 1] + ' ' + a[0].slice(2); }
-function isBaki(e) { return e.status === 'receivable' || e.status === 'loan'; }
-function inPeriod(e, p) {
-  if (p === 'all') return true;
-  var a = (e.date || '').split('-'); if (a.length < 3) return false;
-  var d = new Date(+a[0], +a[1] - 1, +a[2]), now = new Date();
-  if (p === 'month') return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth();
-  var wk = new Date(now); wk.setHours(0, 0, 0, 0); wk.setDate(wk.getDate() - 6);
-  return d >= wk && d <= now;
+function endOf(e) { return e.endDate && e.endDate > e.date ? e.endDate : e.date; }
+function fmtWhen(e) { var en = endOf(e); return en && en !== e.date ? fmtDate(e.date) + ' – ' + fmtDate(en) : fmtDate(e.date); }
+function daysTxt(n) { return n === 1 ? t('dayOne') : t('dayCount').replace('{n}', n); }
+function isBaki(e) { return e.status === 'receivable' || e.status === 'loan' || e.status === 'unpaid'; }
+function dnum(s) { var a = String(s || '').split('-'); return a.length < 3 ? NaN : Date.UTC(+a[0], +a[1] - 1, +a[2]) / 864e5; }
+function dstr(n) { var d = new Date(n * 864e5); return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()); }
+function periodRange(p) {
+  if (p === 'all') return null;
+  var now = new Date();
+  if (p === 'month') return { from: ymd(new Date(now.getFullYear(), now.getMonth(), 1)), to: ymd(new Date(now.getFullYear(), now.getMonth() + 1, 0)) };
+  return { from: dayOffset(6), to: todayStr() };
 }
+// A multi-day entry is spread evenly over its days, so each period gets only its share.
+function clip(e, r) {
+  if (!r) return e;
+  if (!e.date) return null;
+  var s = e.date, en = endOf(e);
+  if (en < r.from || s > r.to) return null;
+  if (s >= r.from && en <= r.to) return e;
+  var a = s > r.from ? s : r.from, b = en < r.to ? en : r.to;
+  var w = (dnum(b) - dnum(a) + 1) / (dnum(en) - dnum(s) + 1);
+  var c = Object.assign({}, e);
+  c.amount = e.amount * w; c.interest = (e.interest || 0) * w; c.distance = (e.distance || 0) * w;
+  return c;
+}
+function inRange(list, r) { return list.map(function (e) { return clip(e, r); }).filter(Boolean); }
 function daysUntil(dStr) {
   if (!dStr) return null;
   var a = dStr.split('-'); if (a.length < 3) return null;
@@ -346,6 +396,9 @@ function isEntryFixed(e) {
   if (e.costNature) return e.costNature === 'fixed';
   return e.type === 'Purchase' || e.type === 'Loan/EMI';
 }
+function photoIds(e) { return String((e && e.photo) || '').split(',').map(function (x) { return x.trim(); }).filter(function (x) { return x && x !== 'pending'; }); }
+function payPct() { var p = state.settings.driverPayPct; return (p === undefined || p === null || p === '') ? 20 : Math.max(0, Math.min(100, Number(p) || 0)); }
+function toggleCls(id, c, on) { var el = document.getElementById(id); if (el) el.classList.toggle(c, on); }
 function toast(msg) { var el = document.getElementById('toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove('show'); }, 2600); }
 
 // ================= 5. Server Communication =================
@@ -355,22 +408,32 @@ function api(action, data, extra) {
   return fetch(CONFIG.API_URL, { method: 'POST', body: JSON.stringify(body) })
     .then(function (r) { if (!r.ok) throw new Error('net'); return r.json(); });
 }
-function adminCall(action, data) {
+function adminCall(action, data, confirmSaved) {
   api(action, data).then(function (res) {
-    if (res.ok) return store('tt_boot', state);
+    if (res.ok) { store('tt_boot', state); if (confirmSaved) toast(t('saved')); return; }
     if (res.error === 'auth') return needLogin();
     toast(t('notSaved') + ' (' + res.error + ')'); refresh(true);
   }).catch(function () { toast(t('notSaved') + ' — ' + t('offline')); refresh(true); });
 }
-
 function qid(q) { return q.op === 'save' ? q.entry.id : q.id; }
 function isPending(id) { return queue.some(function (q) { return qid(q) === id; }); }
-function lite(e) { var c = {}; Object.keys(e).forEach(function (k) { if (k !== 'photoData') c[k] = e[k]; }); if (e.photoData && !c.photo) c.photo = 'pending'; return c; }
+function lite(e) {
+  var c = {};
+  Object.keys(e).forEach(function (k) { if (k !== 'photoData' && k !== 'photosData') c[k] = e[k]; });
+  if ((e.photoData || (e.photosData && e.photosData.length)) && !c.photo) c.photo = 'pending';
+  return c;
+}
 function enqueue(item) {
   var key = qid(item);
   if (item.op === 'save') {
-    if (item.entry.photo === 'pending') item.entry.photo = '';
-    queue.forEach(function (q) { if (q.op === 'save' && q.entry.id === key && q.entry.photoData && !item.entry.photoData) item.entry.photoData = q.entry.photoData; });
+    var en = item.entry;
+    if (en.photo === 'pending') en.photo = '';
+    if (!en.photosData && !en.photoData) queue.forEach(function (q) {
+      if (q.op === 'save' && q.entry.id === key) {
+        if (q.entry.photosData) en.photosData = q.entry.photosData;
+        if (q.entry.photoData) en.photoData = q.entry.photoData;
+      }
+    });
   }
   var next = queue.filter(function (q) { return qid(q) !== key; }).concat([item]);
   if (!store('tt_queue', next)) { toast(t('storageFull')); return false; }
@@ -452,8 +515,14 @@ function refresh(silent) {
   });
 }
 function onBoot(d) {
+  var s = d.settings || {};
   d.users = d.users || [];
-  d.settings = d.settings || { currency: 'BDT', language: 'bn', targetMonthlyProfit: 0 };
+  d.settings = {
+    currency: s.currency || 'BDT',
+    language: s.language || 'bn',
+    targetMonthlyProfit: Number(s.targetMonthlyProfit) || 0,
+    driverPayPct: (s.driverPayPct === undefined || s.driverPayPct === null || s.driverPayPct === '') ? 20 : (Number(s.driverPayPct) || 0)
+  };
   state = d;
   store('tt_boot', d);
   applyQueue(); applyLang(); softRender(); flush();
@@ -495,6 +564,80 @@ function renderNav() {
   }).join('');
 }
 
+// ---------- shared: buttons, date picker, auto driver pay ----------
+function tbtn(on, label, fn, id) { return '<button type="button"' + (id ? ' id="' + id + '"' : '') + ' class="' + (on ? 'on' : '') + '" onclick="' + fn + '">' + label + '</button>'; }
+function datePicker() {
+  var today = todayStr(), r = dp.mode === 'range';
+  return '<label class="label">' + t('date') + ' <span class="req">*</span></label><div class="dpwrap" id="dpWrap">'
+    + '<div class="segfull" style="margin-top:0">' + tbtn(!r, t('oneDay'), "setDateMode('day')", 'dm_day') + tbtn(r, t('dateRange'), "setDateMode('range')", 'dm_range') + '</div>'
+    + '<div id="dp_day" class="cond' + (r ? '' : ' show') + '"><div class="chips">'
+    + '<button type="button" class="ichip' + (dp.date === dayOffset(0) ? ' on' : '') + '" id="dq0" onclick="quickDay(0)">' + t('today') + '</button>'
+    + '<button type="button" class="ichip' + (dp.date === dayOffset(1) ? ' on' : '') + '" id="dq1" onclick="quickDay(1)">' + t('yesterday') + '</button></div>'
+    + '<input class="input" id="dp_date" type="date" max="' + today + '" value="' + esc(dp.date) + '" onchange="dpChanged()"></div>'
+    + '<div id="dp_range" class="cond' + (r ? ' show' : '') + '"><div class="two">'
+    + '<div><label class="label" style="margin-top:10px">' + t('fromDate') + '</label><input class="input" id="dp_from" type="date" max="' + today + '" value="' + esc(dp.from) + '" onchange="dpChanged()"></div>'
+    + '<div><label class="label" style="margin-top:10px">' + t('toDate') + '</label><input class="input" id="dp_to" type="date" max="' + today + '" value="' + esc(dp.to) + '" onchange="dpChanged()"></div></div>'
+    + '<p class="hint" id="dp_span" style="margin:8px 2px 0">' + spanText() + '</p></div></div>';
+}
+function keepDates() {
+  var a = document.getElementById('dp_date'), b = document.getElementById('dp_from'), c = document.getElementById('dp_to');
+  if (a) dp.date = a.value; if (b) dp.from = b.value; if (c) dp.to = c.value;
+}
+function setDateMode(m) {
+  keepDates(); dp.mode = m;
+  if (m === 'range' && !dp.from && dp.date) { dp.from = dp.date; var b = document.getElementById('dp_from'); if (b) b.value = dp.from; }
+  toggleCls('dm_day', 'on', m === 'day'); toggleCls('dm_range', 'on', m === 'range');
+  toggleCls('dp_day', 'show', m === 'day'); toggleCls('dp_range', 'show', m === 'range');
+  dpChanged();
+}
+function quickDay(n) { var el = document.getElementById('dp_date'); if (el) el.value = dayOffset(n); dpChanged(); }
+function dpChanged() {
+  keepDates();
+  toggleCls('dq0', 'on', dp.date === dayOffset(0)); toggleCls('dq1', 'on', dp.date === dayOffset(1));
+  var s = document.getElementById('dp_span'); if (s) s.textContent = spanText();
+  toggleCls('dpWrap', 'err', false);
+}
+function spanText() { return dp.from && dp.to && dp.to >= dp.from ? daysTxt(dnum(dp.to) - dnum(dp.from) + 1) : ''; }
+function readDates() {
+  keepDates();
+  var today = todayStr(), res;
+  if (dp.mode === 'range') {
+    if (!dp.from || !dp.to) res = { err: t('pickRange') };
+    else if (dp.to < dp.from) res = { err: t('badRange') };
+    else if (dp.to > today) res = { err: t('noFuture') };
+    else res = { date: dp.from, endDate: dp.to === dp.from ? '' : dp.to };
+  } else {
+    if (!dp.date) res = { err: t('pickDate') };
+    else if (dp.date > today) res = { err: t('noFuture') };
+    else res = { date: dp.date, endDate: '' };
+  }
+  if (res.err) { var w = document.getElementById('dpWrap'); if (w) { w.classList.add('err'); w.scrollIntoView({ block: 'center', behavior: 'smooth' }); } }
+  return res;
+}
+function driverOf(truckId) {
+  if (state.me && state.me.role !== 'admin') return state.me.name || '';
+  return state.users.filter(function (u) { return u.role === 'driver' && u.active && u.truckId === truckId; }).map(function (u) { return u.name; }).join(', ');
+}
+// Keeps the auto "Driver pay" cost in step with an income entry. Returns the pay entry (or null).
+function syncAutoPay(inc, on) {
+  var cid = inc.id + '_dp', old = findEntry(cid), p = payPct();
+  if (!on || p <= 0 || inc.kind !== 'income') {
+    if (old) { state.ledger = state.ledger.filter(function (x) { return x.id !== cid; }); enqueue({ op: 'delete', id: cid }); }
+    return null;
+  }
+  var c = {
+    id: cid, linkId: inc.id, truckId: inc.truckId, kind: 'expense', type: 'Driver pay', amount: Math.round(inc.amount * p) / 100,
+    date: inc.date, endDate: inc.endDate || '', note: p + '% × ' + money(inc.amount),
+    status: old ? old.status : 'paid', party: old && old.party ? old.party : driverOf(inc.truckId),
+    dueDate: old ? (old.dueDate || '') : '', interest: old ? (old.interest || 0) : 0, distance: 0,
+    createdAt: old ? old.createdAt : (inc.createdAt || Date.now()), enteredBy: inc.enteredBy || state.me.email,
+    photo: '', costNature: 'op', payer: old ? (old.payer || '') : ''
+  };
+  if (!enqueue({ op: 'save', entry: c })) return null;
+  var i = findIdx(cid); if (i >= 0) state.ledger[i] = c; else state.ledger.unshift(c);
+  return c;
+}
+
 // ---------- DRIVER ----------
 function viewDriver() {
   var h = '';
@@ -504,77 +647,104 @@ function viewDriver() {
   h += '<div class="sec-title">' + t('costs') + '</div><div class="dgrid">' + typesFor('expense').map(function (ty) {
     return '<button class="dtile" onclick="openDriverEntry(\'expense\',\'' + ty.id + '\')"><span class="dico">' + icon(ty.name) + '</span><span class="dname">' + esc(catLabel(ty.name)) + '</span></button>';
   }).join('') + '</div>';
-  var mine = state.ledger.slice().sort(function (a, b) { return (b.createdAt || 0) - (a.createdAt || 0); });
+  var mine = state.ledger.slice().sort(function (a, b) { return ((b.createdAt || 0) - (a.createdAt || 0)) || ((a.linkId ? 1 : 0) - (b.linkId ? 1 : 0)); });
   h += '<div class="sec-title" style="margin-top:20px">' + t('recent') + '</div>';
   h += mine.length ? '<div class="list">' + mine.map(driverRow).join('') + '</div>' : '<div class="empty">' + t('noEntries') + '</div>';
   h += '<button class="btn ghost" style="margin-top:24px" onclick="logout()">' + t('logout') + '</button>';
   return h;
 }
 function driverRow(e) {
-  var pend = isPending(e.id);
+  var pend = isPending(e.id), n = photoIds(e).length;
   return '<div class="row" onclick="driverRowTap(\'' + e.id + '\')"><span class="dico sm">' + icon(e.type) + '</span><div class="row-main"><div class="row-top"><span class="row-cat">' + esc(catLabel(e.type)) + '</span><span class="row-amt ' + e.kind + '">' + (e.kind === 'income' ? '+' : '−') + money(e.amount) + '</span></div>'
-    + '<div class="row-sub"><span class="mono">' + fmtDate(e.date) + '</span>' + (isBaki(e) ? '<span class="badge rcv">' + t('baki') + '</span>' : '') + (e.photo ? '<span>📷</span>' : '')
+    + '<div class="row-sub"><span class="mono">' + fmtWhen(e) + '</span>' + (e.linkId ? '<span class="badge auto">' + t('autoBadge') + '</span>' : '') + (isBaki(e) ? '<span class="badge rcv">' + t('baki') + '</span>' : '') + (e.photo ? '<span>📷' + (n > 1 ? ' ' + n : '') + '</span>' : '')
     + '<span class="st ' + (pend ? 'wait">⏳ ' + t('pending') : 'ok">✓ ' + t('sent')) + '</span></div></div></div>';
 }
 function driverRowTap(id) {
   var e = findEntry(id); if (!e) return;
+  var parent = e.linkId ? findEntry(e.linkId) : null; if (parent) e = parent;
   if (Date.now() - (e.createdAt || 0) > 24 * 36e5) return toast(t('cantDelete'));
-  deleteEntryConfirm(id);
+  deleteEntryConfirm(e.id);
 }
 function openDriverEntry(kind, typeId) {
   if (!state.me.truckId || !state.trucks.length) return toast(t('askTruck'));
   var ty = typeId ? findType(typeId) : typesFor(kind)[0];
-  form = { kind: kind, type: ty ? ty.name : 'Other', baki: false, day: 0, photo: '', amount: '', party: '', note: '' };
+  form = { kind: kind, type: ty ? ty.name : 'Other', baki: false, photos: [], amount: '', party: '', note: '' };
+  dp = { mode: 'day', date: '', from: '', to: '' };
   drawDriverForm();
   var a = document.getElementById('d_amount'); if (a) a.focus();
 }
-function tbtn(on, label, fn) { return '<button class="' + (on ? 'on' : '') + '" onclick="' + fn + '">' + label + '</button>'; }
 function drawDriverForm() {
   var inc = form.kind === 'income', its = typesFor('income');
   var h = '<div class="sheet-head"><h3><span class="dico sm">' + (inc ? '💵' : icon(form.type)) + '</span>' + esc(inc ? t('moneyIn') : catLabel(form.type)) + '</h3><button class="iconbtn" onclick="closeModal()">✕</button></div>';
-  if (inc && its.length > 1) h += '<div class="chips" style="margin-bottom:12px">' + its.map(function (ty) { return '<button class="ichip' + (form.type === ty.name ? ' on' : '') + '" onclick="setFormType(\'' + ty.id + '\')">' + icon(ty.name) + ' ' + esc(catLabel(ty.name)) + '</button>'; }).join('') + '</div>';
+  if (inc && its.length > 1) h += '<div class="chips" style="margin-bottom:12px">' + its.map(function (ty) { return '<button type="button" class="ichip' + (form.type === ty.name ? ' on' : '') + '" onclick="setFormType(\'' + ty.id + '\')">' + icon(ty.name) + ' ' + esc(catLabel(ty.name)) + '</button>'; }).join('') + '</div>';
   h += '<div class="amtwrap big"><span class="amtsym">' + sym() + '</span><input class="amtin" id="d_amount" type="number" inputmode="decimal" placeholder="0" value="' + esc(form.amount) + '"></div>';
   h += '<div class="segfull big">' + tbtn(!form.baki, inc ? t('gotNow') : t('paidNow'), 'setBaki(false)') + tbtn(form.baki, inc ? t('willGet') : t('baki'), 'setBaki(true)') + '</div>';
   if (form.baki) h += '<input class="input" id="d_party" style="margin-top:10px" placeholder="' + t('whoName') + '" value="' + esc(form.party) + '">';
-  h += '<div class="segfull">' + tbtn(form.day === 0, t('today'), 'setDay(0)') + tbtn(form.day === 1, t('yesterday'), 'setDay(1)') + '</div>';
-  h += '<label class="photo-btn">' + (form.photo ? '<img src="' + form.photo + '" alt=""><span>' + t('retake') + '</span>' : '<span class="dico sm">📷</span><span>' + t('photo') + ' (' + t('optional') + ')</span>') + '<input type="file" accept="image/*" capture="environment" onchange="takePhoto(this)" hidden></label>';
+  h += datePicker();
+  h += photoPicker();
   h += '<input class="input" id="d_note" placeholder="' + t('note') + ' (' + t('optional') + ')" value="' + esc(form.note) + '">';
+  if (inc && payPct() > 0) h += '<p class="hint" style="margin:10px 2px 0">👷 ' + t('autoPay').replace('{p}', payPct()) + '</p>';
   h += '<button class="btn xl ' + (inc ? 'in' : 'out') + '" onclick="saveDriverEntry()">✓ ' + t('save') + '</button>';
   openModal(h);
 }
-function keepInputs() { ['amount', 'party', 'note'].forEach(function (k) { var el = document.getElementById('d_' + k); if (el) form[k] = el.value; }); }
+function photoPicker() {
+  var full = form.photos.length >= MAX_PHOTOS, off = full ? ' off' : '';
+  var h = '<label class="label">' + t('photos') + ' (' + t('optional') + ')</label>';
+  if (form.photos.length) h += '<div class="thumbs">' + form.photos.map(function (p, i) { return '<div class="thumb"><img src="' + p + '" alt=""><button type="button" onclick="removePhoto(' + i + ')" aria-label="' + t('del') + '">✕</button></div>'; }).join('') + '</div>';
+  h += '<div class="photo-row"><label class="photo-btn' + off + '"><span class="dico sm">📷</span><span>' + t('camera') + '</span><input type="file" accept="image/*" capture="environment" onchange="takePhotos(this)" hidden></label>'
+    + '<label class="photo-btn' + off + '"><span class="dico sm">🖼️</span><span>' + t('gallery') + '</span><input type="file" accept="image/*" multiple onchange="takePhotos(this)" hidden></label></div>';
+  h += '<p class="hint" style="margin:0 2px 10px">' + t('photosMax').replace('{n}', MAX_PHOTOS) + ' · ' + form.photos.length + '/' + MAX_PHOTOS + '</p>';
+  return h;
+}
+function keepInputs() { ['amount', 'party', 'note'].forEach(function (k) { var el = document.getElementById('d_' + k); if (el) form[k] = el.value; }); keepDates(); }
 function setBaki(b) { keepInputs(); form.baki = b; drawDriverForm(); }
-function setDay(n) { keepInputs(); form.day = n; drawDriverForm(); }
 function setFormType(id) { keepInputs(); var ty = findType(id); if (ty) form.type = ty.name; drawDriverForm(); }
-function takePhoto(input) {
-  var f = input.files && input.files[0]; if (!f) return;
+function removePhoto(i) { keepInputs(); form.photos.splice(i, 1); drawDriverForm(); }
+function takePhotos(input) {
+  var files = Array.prototype.slice.call(input.files || []);
+  input.value = '';
+  if (!files.length) return;
   keepInputs();
-  var img = new Image(), url = URL.createObjectURL(f);
+  var room = MAX_PHOTOS - form.photos.length;
+  if (files.length > room) toast(t('photosMax').replace('{n}', MAX_PHOTOS));
+  files = files.slice(0, Math.max(0, room));
+  var next = function () {
+    if (!files.length) return drawDriverForm();
+    shrink(files.shift(), function (data) { if (data) form.photos.push(data); next(); });
+  };
+  next();
+}
+function shrink(file, cb) {
+  var img = new Image(), url = URL.createObjectURL(file);
   img.onload = function () {
-    var s = Math.min(1, 1100 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+    var s = Math.min(1, 1000 / Math.max(img.width, img.height)), c = document.createElement('canvas');
     c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
     c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-    form.photo = c.toDataURL('image/jpeg', 0.6); URL.revokeObjectURL(url); drawDriverForm();
+    URL.revokeObjectURL(url); cb(c.toDataURL('image/jpeg', 0.6));
   };
+  img.onerror = function () { URL.revokeObjectURL(url); cb(''); };
   img.src = url;
 }
 function saveDriverEntry() {
   keepInputs();
   var amount = parseFloat(form.amount);
   if (!amount || amount <= 0) { toast(t('amount') + '?'); var a = document.getElementById('d_amount'); if (a) a.focus(); return; }
-  var d = new Date(); d.setDate(d.getDate() - form.day);
+  var dt = readDates(); if (dt.err) return toast(dt.err);
   var inc = form.kind === 'income';
-  var e = { id: uid(), truckId: state.me.truckId, kind: form.kind, type: form.type, amount: Math.round(amount * 100) / 100, date: ymd(d), note: form.note.trim(),
-    costNature: 'op',
+  var e = { id: uid(), truckId: state.me.truckId, kind: form.kind, type: form.type, amount: round2(amount), date: dt.date, endDate: dt.endDate, note: form.note.trim(),
+    costNature: inc ? '' : 'op',
     status: form.baki ? (inc ? 'receivable' : 'loan') : (inc ? 'received' : 'paid'),
-    payer: form.baki ? '' : state.me.name || state.me.email,
+    payer: (inc || form.baki) ? '' : (state.me.name || state.me.email),
     party: form.baki ? form.party.trim() : '', dueDate: '', interest: 0, distance: 0,
-    createdAt: Date.now(), enteredBy: state.me.email, photo: '' };
-  if (form.photo) e.photoData = form.photo;
+    createdAt: Date.now(), enteredBy: state.me.email, photo: '', linkId: '' };
+  if (form.photos.length) e.photosData = form.photos.slice();
   if (!enqueue({ op: 'save', entry: e })) return;
-  state.ledger.unshift(lite(e)); render();
-  openModal('<div class="done"><div class="done-mark">✓</div><div class="done-amt ' + e.kind + '">' + money(e.amount) + '</div><div class="done-txt">' + t('saved') + '</div></div>');
-  setTimeout(function () { if (document.querySelector('#modalBody .done')) closeModal(); }, 1400);
+  state.ledger.unshift(lite(e));
+  var pay = inc ? syncAutoPay(e, true) : null;
+  render();
+  openModal('<div class="done"><div class="done-mark">✓</div><div class="done-amt ' + e.kind + '">' + money(e.amount) + '</div><div class="done-txt">' + t('saved') + ' · ' + fmtWhen(e) + '</div>'
+    + (pay ? '<div class="done-txt" style="font-size:14px">👷 ' + esc(catLabel('Driver pay')) + ': ' + money(pay.amount) + '</div>' : '') + '</div>');
+  setTimeout(function () { if (document.querySelector('#modalBody .done')) closeModal(); }, 1600);
 }
 
 // ---------- ADMIN: dashboard ----------
@@ -582,7 +752,11 @@ function sum(list, f) { return list.reduce(function (s, e) { return s + f(e); },
 function amt(e) { return e.amount; }
 function aggByType(list) { var m = {}; list.forEach(function (e) { m[e.type] = (m[e.type] || 0) + e.amount; }); return m; }
 function topKey(m) { return Object.keys(m).sort(function (a, b) { return m[b] - m[a]; })[0]; }
-function truckSelect(cur, onchange) { return '<select class="sel" onchange="' + onchange + '"><option value="all">' + t('allTrucks') + '</option>' + state.trucks.map(function (tr) { return '<option value="' + tr.id + '"' + (cur === tr.id ? ' selected' : '') + '>' + esc(tr.name) + '</option>'; }).join('') + '</select>'; }
+function truckSelect(cur, onchange) {
+  return '<select class="sel" onchange="' + onchange + '"><option value="all">' + t('allTrucks') + '</option>'
+    + state.trucks.map(function (tr) { return '<option value="' + tr.id + '"' + (cur === tr.id ? ' selected' : '') + '>' + esc(tr.name) + '</option>'; }).join('')
+    + '<option value="' + GENERAL + '"' + (cur === GENERAL ? ' selected' : '') + '>🏢 ' + t('generalShort') + '</option></select>';
+}
 function seg(opts, cur, fn) { return opts.map(function (o) { var l = o === 'week' ? t('week') : o === 'month' ? t('month') : t('allTime'); return '<button class="seg-btn' + (cur === o ? ' on' : '') + '" onclick="' + fn + '(\'' + o + '\')">' + l + '</button>'; }).join(''); }
 function setDashPeriod(v) { dashPeriod = v; render(); }
 function setDashScope(v) { dashScope = v; render(); }
@@ -592,102 +766,94 @@ function checkDocAlerts() {
   var alerts = [];
   state.trucks.forEach(function (tr) {
     if (!tr.active) return;
-    [
-      { label: t('fitnessExp'), date: tr.fitnessDate },
-      { label: t('taxExp'), date: tr.taxDate },
-      { label: t('routeExp'), date: tr.routeDate }
-    ].forEach(function (doc) {
+    [{ label: t('fitnessExp'), date: tr.fitnessDate }, { label: t('taxExp'), date: tr.taxDate }, { label: t('routeExp'), date: tr.routeDate }].forEach(function (doc) {
       if (!doc.date) return;
       var days = daysUntil(doc.date);
-      if (days !== null && days <= 30) {
-        alerts.push({ truck: tr.name, doc: doc.label, date: doc.date, days: days });
-      }
+      if (days !== null && days <= 30) alerts.push({ truck: tr.name, doc: doc.label, date: doc.date, days: days });
     });
   });
   return alerts;
 }
-
-function viewDashboard() {
+function docAlertHtml() {
   var alerts = checkDocAlerts();
-  var alertHtml = '';
-  if (alerts.length) {
-    var hasExpired = alerts.some(function(a){ return a.days < 0; });
-    alertHtml = '<div class="alert-card ' + (hasExpired ? 'danger' : '') + '"><div class="alert-head">⚠️ ' + t('docsAlert') + '</div>'
-      + alerts.map(function (a) {
-        var status = a.days < 0 ? '<strong style="color:var(--out)">' + t('expired') + ' (' + fmtDate(a.date) + ')</strong>' : t('expSoon').replace('{d}', a.days);
-        return '<div class="alert-item"><span><strong>' + esc(a.truck) + '</strong>: ' + a.doc + '</span><span>' + status + '</span></div>';
-      }).join('') + '</div>';
-  }
-
+  if (!alerts.length) return '';
+  var hasExpired = alerts.some(function (a) { return a.days < 0; });
+  return '<div class="alert-card ' + (hasExpired ? 'danger' : '') + '"><div class="alert-head">⚠️ ' + t('docsAlert') + '</div>'
+    + alerts.map(function (a) {
+      var status = a.days < 0 ? '<strong style="color:var(--out)">' + t('expired') + ' (' + fmtDate(a.date) + ')</strong>' : t('expSoon').replace('{d}', a.days);
+      return '<div class="alert-item"><span><strong>' + esc(a.truck) + '</strong>: ' + a.doc + '</span><span>' + status + '</span></div>';
+    }).join('') + '</div>';
+}
+// For each active truck: days after the last day covered by an income entry, up to and including today.
+function incomeGapHtml() {
+  var today = todayStr(), tn = dnum(today);
+  var trucks = state.trucks.filter(function (tr) { return tr.active && (dashTruck === 'all' || dashTruck === GENERAL || dashTruck === tr.id); });
+  if (!trucks.length) return '';
+  var rows = [];
+  trucks.forEach(function (tr) {
+    var last = '';
+    state.ledger.forEach(function (e) {
+      if (e.kind !== 'income' || e.truckId !== tr.id || !e.date) return;
+      var en = endOf(e); if (en > today) en = today;
+      if (en > last) last = en;
+    });
+    if (!last) { rows.push('<div class="alert-item"><span><strong>' + esc(tr.name) + '</strong></span><span>' + t('gapNever') + '</span></div>'); return; }
+    var n = tn - dnum(last);
+    if (n <= 0) return;
+    var from = dstr(dnum(last) + 1);
+    rows.push('<div class="alert-item"><span><strong>' + esc(tr.name) + '</strong></span><span><strong>' + daysTxt(n) + '</strong> · ' + (n === 1 ? fmtDate(from) : fmtDate(from) + ' – ' + fmtDate(today)) + '</span></div>');
+  });
+  if (!rows.length) return '<div class="alert-card ok"><div class="alert-head">✓ ' + t('gapOk') + '</div></div>';
+  return '<div class="alert-card"><div class="alert-head">📅 ' + t('gapTitle') + '</div>' + rows.join('') + '</div>';
+}
+function targetHtml(profit) {
+  if (dashPeriod !== 'month' || dashTruck !== 'all') return '';
+  var target = Number(state.settings.targetMonthlyProfit) || 0;
+  if (target <= 0) return '<div class="target-box" style="padding:10px 14px"><div class="target-sub"><span>' + t('noTarget') + '</span><a href="javascript:void(0)" onclick="go(\'settings\')" style="color:var(--amber2);font-weight:600">' + t('setTarget') + ' →</a></div></div>';
+  var pct = Math.min(100, Math.max(0, Math.round(profit / target * 100))), diff = profit - target;
+  var diffText = diff >= 0
+    ? '<span style="color:var(--in);font-weight:700">▲ ' + t('targetMet') + ' ' + money(diff) + '</span>'
+    : '<span style="color:var(--out);font-weight:700">▼ ' + t('targetShort') + ' ' + money(-diff) + '</span>';
+  return '<div class="target-box"><div class="target-top"><span class="target-title">' + t('targetProgress') + '</span><span style="font-weight:700">' + pct + '%</span></div>'
+    + '<div class="target-bar-wrap"><div class="target-bar" style="width:' + pct + '%;background:' + (diff >= 0 ? 'var(--in)' : 'var(--amber)') + '"></div></div>'
+    + '<div class="target-sub"><span>' + (profit < 0 ? '−' : '') + money(Math.abs(profit)) + ' / ' + money(target) + '</span>' + diffText + '</div></div>';
+}
+function viewDashboard() {
+  var h = docAlertHtml() + incomeGapHtml();
   var base = state.ledger.filter(function (e) { return dashTruck === 'all' || e.truckId === dashTruck; });
-  var scoped = base.filter(function (e) { return inPeriod(e, dashPeriod); });
-  
-  // Cost split: Operational vs All (Operational + Fixed)
+  var scoped = inRange(base, periodRange(dashPeriod));
   var inc = scoped.filter(function (e) { return e.kind === 'income'; });
   var expAll = scoped.filter(function (e) { return e.kind === 'expense'; });
   var exp = dashScope === 'op' ? expAll.filter(function (e) { return !isEntryFixed(e); }) : expAll;
-  
   var revenue = sum(inc, amt), interest = sum(exp, function (e) { return e.interest || 0; });
   var cost = sum(exp, amt) + interest, profit = revenue - cost;
   var received = sum(inc.filter(function (e) { return e.status !== 'receivable'; }), amt);
   var distance = sum(scoped, function (e) { return e.distance || 0; });
   var rcvOut = sum(base.filter(function (e) { return e.kind === 'income' && e.status === 'receivable'; }), amt);
   var payOut = sum(base.filter(function (e) { return e.kind === 'expense' && (e.status === 'loan' || e.status === 'unpaid'); }), function (e) { return e.amount + (e.interest || 0); });
-  
   var incAgg = aggByType(inc), expAgg = aggByType(exp);
   if (interest > 0) expAgg.Interest = (expAgg.Interest || 0) + interest;
-  var topInc = topKey(incAgg), topExp = topKey(expAgg);
+  var topInc = topKey(incAgg), topExp = topKey(expAgg), scopeLbl = dashScope === 'op' ? t('opCost') : t('allCost');
 
-  // Target Profit Computation (Month only)
-  var target = (state.settings && state.settings.targetMonthlyProfit) ? parseFloat(state.settings.targetMonthlyProfit) : 0;
-  var targetHtml = '';
-  if (dashPeriod === 'month') {
-    if (target > 0) {
-      var pct = Math.min(100, Math.max(0, Math.round((profit / target) * 100)));
-      var diff = profit - target;
-      var diffText = diff >= 0
-        ? '<span style="color:var(--in);font-weight:700">▲ ' + t('targetMet') + ' ' + money(diff) + '</span>'
-        : '<span style="color:var(--out);font-weight:700">▼ ' + t('targetShort') + ' ' + money(Math.abs(diff)) + '</span>';
-      targetHtml = '<div class="target-box"><div class="target-top"><span class="target-title">' + t('targetProgress') + '</span><span style="font-weight:700">' + pct + '%</span></div>'
-        + '<div class="target-bar-wrap"><div class="target-bar" style="width:' + pct + '%;background:' + (diff >= 0 ? 'var(--in)' : 'var(--amber)') + '"></div></div>'
-        + '<div class="target-sub"><span>' + t('revenue') + ' / ' + money(target) + '</span>' + diffText + '</div></div>';
-    } else {
-      targetHtml = '<div class="target-box" style="padding:10px 14px"><div class="target-sub"><span>' + t('noTarget') + '</span><a href="javascript:void(0)" onclick="go(\'settings\')" style="color:var(--amber2);font-weight:600">' + t('setTarget') + ' →</a></div></div>';
-    }
-  }
-
-  var h = alertHtml;
   h += '<div class="filters">' + truckSelect(dashTruck, 'dashTruck=this.value;render();') + '<div class="seg dark">' + seg(['week', 'month', 'all'], dashPeriod, 'setDashPeriod') + '</div></div>';
-  
-  // Cost Nature Switcher
-  h += '<div class="seg" style="margin-bottom:12px">'
-    + '<button class="seg-btn' + (dashScope === 'op' ? ' on' : '') + '" style="flex:1" onclick="setDashScope(\'op\')">' + t('opCost') + '</button>'
-    + '<button class="seg-btn' + (dashScope === 'all' ? ' on' : '') + '" style="flex:1" onclick="setDashScope(\'all\')">' + t('allCost') + '</button>'
-    + '</div>';
-
-  h += '<div class="hero"><div class="hero-label">' + (profit >= 0 ? t('netProfit') : t('netLoss')) + ' (' + (dashScope === 'op' ? t('opCost') : t('allCost')) + ')</div><div class="hero-net" style="color:' + (profit >= 0 ? '#3DD68C' : '#FF6B57') + '">' + (profit < 0 ? '−' : '') + money(Math.abs(profit)) + '</div>'
+  h += '<div class="seg" style="margin-bottom:12px"><button class="seg-btn' + (dashScope === 'op' ? ' on' : '') + '" style="flex:1" onclick="setDashScope(\'op\')">' + t('opCost') + '</button><button class="seg-btn' + (dashScope === 'all' ? ' on' : '') + '" style="flex:1" onclick="setDashScope(\'all\')">' + t('allCost') + '</button></div>';
+  h += '<div class="hero"><div class="hero-label">' + (profit >= 0 ? t('netProfit') : t('netLoss')) + ' (' + scopeLbl + ')</div><div class="hero-net" style="color:' + (profit >= 0 ? '#3DD68C' : '#FF6B57') + '">' + (profit < 0 ? '−' : '') + money(Math.abs(profit)) + '</div>'
     + '<div class="hero-two"><div class="hero-cell"><span class="hero-k">' + t('revenue') + '</span><span class="hero-v" style="color:#3DD68C">' + money(revenue) + '</span></div><div class="hero-div"></div>'
     + '<div class="hero-cell"><span class="hero-k">' + t('totalCost') + '</span><span class="hero-v" style="color:#FF7A66">' + money(cost) + '</span></div></div></div>';
-  
-  h += targetHtml;
-
+  h += targetHtml(profit);
   h += '<div class="grid2">' + card(t('cashReceived'), money(received)) + card(t('perKm'), distance > 0 ? money(profit / distance) : '—', 'accent') + card(t('receivableOut'), money(rcvOut), 'accent') + card(t('payableOut'), money(payOut), 'neg') + '</div>';
   h += '<div class="grid2">' + card(t('topIncome'), topInc ? esc(catLabel(topInc)) : '—', 'pos', 1, topInc ? money(incAgg[topInc]) : '') + card(t('topCost'), topExp ? esc(catLabel(topExp)) : '—', 'neg', 1, topExp ? money(expAgg[topExp]) : '') + '</div>';
   return h + trendChart(base) + breakdown(t('breakdownCost'), expAgg, 'var(--out)') + breakdown(t('breakdownIncome'), incAgg, 'var(--in)');
 }
-
 function trendChart(base) {
   var now = new Date(), data = [];
   for (var i = 5; i >= 0; i--) {
-    var d = new Date(now.getFullYear(), now.getMonth() - i, 1), y = d.getFullYear(), m = d.getMonth(), inc = 0, exp = 0;
-    base.forEach(function (e) {
-      var a = (e.date || '').split('-');
-      if (+a[0] === y && +a[1] - 1 === m) {
-        if (e.kind === 'income') inc += e.amount;
-        else if (dashScope === 'all' || !isEntryFixed(e)) exp += e.amount + (e.interest || 0);
-      }
+    var d = new Date(now.getFullYear(), now.getMonth() - i, 1), inc = 0, exp = 0;
+    inRange(base, { from: ymd(d), to: ymd(new Date(d.getFullYear(), d.getMonth() + 1, 0)) }).forEach(function (e) {
+      if (e.kind === 'income') inc += e.amount;
+      else if (dashScope === 'all' || !isEntryFixed(e)) exp += e.amount + (e.interest || 0);
     });
-    data.push({ label: MON[lang][m], inc: inc, exp: exp });
+    data.push({ label: MON[lang][d.getMonth()], inc: inc, exp: exp });
   }
   var max = Math.max(1, Math.max.apply(null, data.map(function (x) { return Math.max(x.inc, x.exp); })));
   return '<div class="chart"><div class="sec-title" style="margin:0 0 2px">' + t('trend') + ' (' + (dashScope === 'op' ? t('opCost') : t('allCost')) + ')</div><div class="bars">' + data.map(function (x) {
@@ -705,7 +871,8 @@ function breakdown(title, agg, color) {
 
 // ---------- ADMIN: ledger ----------
 function viewLedger() {
-  var h = '<div class="actions"><button class="act in" onclick="openEntry(\'income\')">+ ' + t('addIncome') + '</button><button class="act out" onclick="openEntry(\'expense\')">+ ' + t('addCost') + '</button></div>';
+  var h = '<div class="actions"><button class="act in" onclick="openEntry(\'income\')">+ ' + t('addIncome') + '</button><button class="act out" onclick="openEntry(\'expense\')">+ ' + t('addCost') + '</button>'
+    + '<button class="act gen" onclick="openEntry(\'expense\',\'\',true)">🏢 ' + t('addGeneral') + '</button></div>';
   h += '<div class="filters">' + truckSelect(logTruck, 'logTruck=this.value;render();') + '<div class="seg">' + ['all', 'income', 'expense'].map(function (o) {
     return '<button class="seg-btn' + (logKind === o ? ' on' : '') + '" onclick="logKind=\'' + o + '\';render();">' + (o === 'all' ? t('all') : o === 'income' ? t('income') : t('expense')) + '</button>';
   }).join('') + '</div></div>';
@@ -718,27 +885,29 @@ function ledgerRows() {
   var list = state.ledger.filter(function (e) {
     if (logTruck !== 'all' && e.truckId !== logTruck) return false;
     if (logKind !== 'all' && e.kind !== logKind) return false;
-    return !q || (e.type + ' ' + catLabel(e.type) + ' ' + (e.note||'') + ' ' + (e.party||'') + ' ' + (e.payer||'') + ' ' + truckName(e.truckId) + ' ' + userName(e.enteredBy)).toLowerCase().indexOf(q) >= 0;
-  }).sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : (b.createdAt || 0) - (a.createdAt || 0); });
+    return !q || (e.type + ' ' + catLabel(e.type) + ' ' + (e.note || '') + ' ' + (e.party || '') + ' ' + (e.payer || '') + ' ' + truckName(e.truckId) + ' ' + userName(e.enteredBy)).toLowerCase().indexOf(q) >= 0;
+  }).sort(function (a, b) { var x = endOf(a) || '', y = endOf(b) || ''; return x < y ? 1 : x > y ? -1 : (b.createdAt || 0) - (a.createdAt || 0); });
   if (!list.length) return '<div class="empty">' + t('noEntries') + '</div>';
   return '<div class="list">' + list.map(function (e) {
-    var badges = '';
+    var badges = '', n = photoIds(e).length;
+    if (e.linkId) badges += '<span class="badge auto">' + t('autoBadge') + '</span>';
     if (e.kind === 'income' && e.status === 'receivable') badges += '<span class="badge rcv">' + t('receivable') + '</span>';
     if (e.kind === 'expense') {
       if (e.status === 'loan' || e.status === 'unpaid') badges += '<span class="badge loan">' + t('loan') + '</span>';
       if (isEntryFixed(e)) badges += '<span class="badge fixed">' + t('fixedBadge') + '</span>';
     }
     if (e.type === 'Purchase') badges += '<span class="badge buy">' + t('purchase') + '</span>';
+    var where = e.truckId === GENERAL ? '<span class="badge gen">🏢 ' + t('generalShort') + '</span>' : '<span class="tag">' + esc(truckName(e.truckId)) + '</span>';
     var by = e.enteredBy && e.enteredBy !== state.me.email ? '<span class="tag">👤 ' + esc(userName(e.enteredBy)) + '</span>' : '';
     var payerInfo = (e.kind === 'expense' && e.payer) ? '<span>💳 ' + esc(e.payer) + '</span>' : '';
     return '<div class="row" onclick="openEntry(\'' + e.kind + '\',\'' + e.id + '\')"><div class="row-main"><div class="row-top"><span class="row-cat">' + esc(catLabel(e.type)) + '</span><span class="row-amt ' + e.kind + '">' + (e.kind === 'income' ? '+' : '−') + money(e.amount) + '</span></div>'
-      + '<div class="row-sub"><span class="mono">' + fmtDate(e.date) + '</span><span class="tag">' + esc(truckName(e.truckId)) + '</span>' + by + badges
+      + '<div class="row-sub"><span class="mono">' + fmtWhen(e) + '</span>' + where + by + badges
       + (e.party ? '<span>· ' + esc(e.party) + '</span>' : '') + payerInfo + (e.note ? '<span>· ' + esc(e.note) + '</span>' : '') + (e.interest > 0 ? '<span>· ' + t('interest') + ' ' + money(e.interest) + '</span>' : '')
-      + (e.photo ? '<span>📷</span>' : '') + (isPending(e.id) ? '<span class="st wait">⏳</span>' : '') + '</div></div></div>';
+      + (e.photo ? '<span>📷' + (n > 1 ? ' ' + n : '') + '</span>' : '') + (isPending(e.id) ? '<span class="st wait">⏳</span>' : '') + '</div></div></div>';
   }).join('') + '</div>';
 }
 
-// ---------- ADMIN: trucks & document dates ----------
+// ---------- ADMIN: trucks ----------
 function viewTrucks() {
   var h = '<button class="btn amber" style="margin-bottom:14px" onclick="openTruck(\'\')">+ ' + t('addTruck') + '</button>';
   if (!state.trucks.length) return h + '<div class="empty">' + t('noTrucks') + '</div>';
@@ -748,25 +917,15 @@ function viewTrucks() {
     meta.push(num(state.ledger.filter(function (e) { return e.truckId === tr.id; }).length) + ' ' + t('entries'));
     var drivers = state.users.filter(function (u) { return u.truckId === tr.id; }).map(function (u) { return esc(u.name); });
     if (drivers.length) meta.push('👤 ' + drivers.join(', '));
-    
-    // Doc badges
     var docBadges = [];
-    [
-      { name: 'Fitness', date: tr.fitnessDate },
-      { name: 'Tax', date: tr.taxDate },
-      { name: 'Route', date: tr.routeDate }
-    ].forEach(function(d){
-      if(!d.date) return;
+    [{ name: 'Fitness', date: tr.fitnessDate }, { name: 'Tax', date: tr.taxDate }, { name: 'Route', date: tr.routeDate }].forEach(function (d) {
+      if (!d.date) return;
       var du = daysUntil(d.date);
       var cls = du < 0 ? 'doc-pill over' : (du <= 30 ? 'doc-pill soon' : 'doc-pill');
-      var txt = d.name + ': ' + (du < 0 ? t('expired') : du + 'd');
-      docBadges.push('<span class="' + cls + '">' + txt + '</span>');
+      docBadges.push('<span class="' + cls + '">' + d.name + ': ' + (du < 0 ? t('expired') : du + 'd') + '</span>');
     });
-
     return '<div class="tcard' + (tr.active ? '' : ' off') + '" onclick="openTruck(\'' + tr.id + '\')"><div class="tcard-top"><span class="tcard-name">' + esc(tr.name) + '</span>' + (tr.active ? '' : '<span class="tag">' + t('inactive') + '</span>') + '</div>'
-      + '<div class="tcard-meta">' + meta.join(' · ') + '</div>'
-      + (docBadges.length ? '<div class="tcard-docs">' + docBadges.join('') + '</div>' : '')
-      + '</div>';
+      + '<div class="tcard-meta">' + meta.join(' · ') + '</div>' + (docBadges.length ? '<div class="tcard-docs">' + docBadges.join('') + '</div>' : '') + '</div>';
   }).join('');
 }
 
@@ -777,7 +936,7 @@ function viewDues() {
   var loans = state.ledger.filter(function (e) { return e.kind === 'expense' && (e.status === 'loan' || e.status === 'unpaid'); }).sort(byDue);
   var h = '<div class="grid2">' + card(t('receivables'), money(sum(rcv, amt)), 'pos') + card(t('loans'), money(sum(loans, function (e) { return e.amount + (e.interest || 0); })), 'neg') + '</div>';
   var item = function (e, isLoan) {
-    var meta = [fmtDate(e.date), truckName(e.truckId), catLabel(e.type)]; if (e.dueDate) meta.push(t('dueDate') + ': ' + fmtDate(e.dueDate));
+    var meta = [fmtWhen(e), truckName(e.truckId), catLabel(e.type)]; if (e.dueDate) meta.push(t('dueDate') + ': ' + fmtDate(e.dueDate));
     if (isLoan && e.payer) meta.push(t('payer') + ': ' + e.payer);
     var total = e.amount + (isLoan ? (e.interest || 0) : 0);
     return '<div class="due"><div class="due-top"><span class="due-party">' + esc(e.party || e.payer || catLabel(e.type)) + '</span><span class="due-amt ' + (isLoan ? 'neg' : 'pos') + '">' + money(total) + '</span></div>'
@@ -797,10 +956,9 @@ function markStatus(id, st) {
 
 // ---------- ADMIN: settings ----------
 function viewSettings() {
-  var curTarget = (state.settings && state.settings.targetMonthlyProfit) || '';
-  var h = '<div class="sec-title">' + t('targetMonth') + '</div>'
-    + '<div class="amtwrap" style="margin-bottom:14px"><span class="amtsym">' + sym() + '</span><input class="amtin" style="font-size:22px" id="st_target" type="number" inputmode="decimal" placeholder="0" value="' + esc(curTarget) + '" onchange="saveMonthlyTarget(this.value)"></div>';
-  
+  var tg = Number(state.settings.targetMonthlyProfit) || 0;
+  var h = '<div class="sec-title">' + t('targetMonth') + '</div><div class="addrow" style="margin:0 0 16px"><div class="amtwrap" style="flex:1"><span class="amtsym">' + sym() + '</span><input class="amtin" style="font-size:22px" id="st_target" type="number" inputmode="decimal" min="0" placeholder="0" value="' + (tg || '') + '" onchange="saveMonthlyTarget()"></div><button class="btnsm" onclick="saveMonthlyTarget()">' + t('save') + '</button></div>';
+  h += '<div class="sec-title">' + t('payPct') + '</div><p class="hint">' + t('payPctHint') + '</p><div class="addrow" style="margin:0 0 16px"><input class="input" id="st_pay" type="number" inputmode="decimal" min="0" max="100" value="' + payPct() + '" onchange="savePayPct()"><button class="btnsm" onclick="savePayPct()">' + t('save') + '</button></div>';
   h += '<div class="sec-title">' + t('language') + '</div><div class="segfull" style="margin:0 0 16px">' + tbtn(lang === 'en', 'English', "setLang('en')") + tbtn(lang === 'bn', 'বাংলা', "setLang('bn')") + '</div>';
   h += '<div class="sec-title">' + t('currency') + '</div><select class="input" style="margin-bottom:18px" onchange="setCurrency(this.value)">' + CUR.map(function (c) { return '<option value="' + c[0] + '"' + (state.settings.currency === c[0] ? ' selected' : '') + '>' + c[0] + ' (' + c[1] + ')</option>'; }).join('') + '</select>';
   h += '<div class="sec-title">' + t('people') + '</div>' + peopleList() + '<button class="btnsm" style="margin:10px 0 20px" onclick="openUser(-1)">+ ' + t('addPerson') + '</button>';
@@ -809,10 +967,17 @@ function viewSettings() {
   h += '<button class="btn ghost" style="margin-top:26px" onclick="logout()">' + t('logout') + ' (' + esc(state.me.email) + ')</button>';
   return h;
 }
-function saveMonthlyTarget(v) {
-  state.settings.targetMonthlyProfit = parseFloat(v) || 0;
-  adminCall('saveSettings', state.settings);
-  toast(t('saved'));
+function saveMonthlyTarget() {
+  var v = Math.max(0, parseFloat(val('st_target')) || 0);
+  if (v === (Number(state.settings.targetMonthlyProfit) || 0)) return toast(t('saved'));
+  state.settings.targetMonthlyProfit = v; store('tt_boot', state);
+  adminCall('saveSettings', { targetMonthlyProfit: v }, true);
+}
+function savePayPct() {
+  var v = Math.max(0, Math.min(100, parseFloat(val('st_pay')) || 0));
+  if (v === payPct()) return toast(t('saved'));
+  state.settings.driverPayPct = v; store('tt_boot', state);
+  adminCall('saveSettings', { driverPayPct: v }, true);
 }
 function peopleList() {
   if (!state.users.length) return '';
@@ -826,121 +991,115 @@ function typeManager(kind) {
     return '<span class="tchip' + (ty.driver ? '' : ' hid') + '"><span onclick="toggleTypeDriver(\'' + ty.id + '\')">' + (ty.driver ? '👁 ' : '🚫 ') + esc(catLabel(ty.name)) + '</span><button onclick="delType(\'' + ty.id + '\')" aria-label="' + t('del') + '">✕</button></span>';
   }).join('') + '</div><div class="addrow"><input class="input" id="newtype_' + kind + '" placeholder="' + t('typeName') + '"><button class="btnsm" onclick="addType(\'' + kind + '\')">' + t('add') + '</button></div>';
 }
-function setCurrency(c) { state.settings.currency = c; render(); adminCall('saveSettings', state.settings); }
+function setCurrency(c) { state.settings.currency = c; render(); adminCall('saveSettings', { currency: c }); }
 function addType(kind) { var name = val('newtype_' + kind).trim(); if (!name) return; var ty = { id: uid(), kind: kind, name: name, driver: true }; state.types.push(ty); render(); adminCall('saveType', ty); }
 function delType(id) { showConfirm(t('del') + '?', function () { state.types = state.types.filter(function (x) { return x.id !== id; }); closeModal(); render(); adminCall('deleteType', { id: id }); }); }
 function toggleTypeDriver(id) { var ty = findType(id); if (!ty) return; ty.driver = !ty.driver; render(); adminCall('saveType', ty); }
 
 // ---------- ADMIN: entry form ----------
-function openEntry(kind, id) {
+function openEntry(kind, id, general) {
   var e = id ? findEntry(id) : null;
-  var trucks = state.trucks.filter(function (x) { return x.active || (e && x.id === e.truckId); });
-  if (!trucks.length && !e) { toast(t('addTruckFirst')); return go('trucks'); }
   formKind = e ? e.kind : kind; editingId = id || '';
-  formCostType = e ? (e.costNature || (e.type === 'Purchase' ? 'fixed' : 'op')) : (formKind === 'expense' ? 'op' : '');
-  formStatus = e ? e.status : (formKind === 'income' ? 'received' : 'paid');
-  var truckSel = e ? e.truckId : trucks[0].id;
+  var inc = formKind === 'income';
+  var isGen = !inc && (e ? e.truckId === GENERAL : !!general);
+  var trucks = state.trucks.filter(function (x) { return x.active || (e && x.id === e.truckId); });
+  if (!trucks.length && !e && !isGen) { toast(t('addTruckFirst')); return go('trucks'); }
+  formCostType = e ? (e.costNature || (e.type === 'Purchase' ? 'fixed' : 'op')) : 'op';
+  formStatus = (e && e.status) ? e.status : (inc ? 'received' : 'paid');
+  dp = e ? { mode: endOf(e) !== e.date ? 'range' : 'day', date: e.date || '', from: e.date || '', to: endOf(e) || '' } : { mode: 'day', date: '', from: '', to: '' };
+  var truckSel = e ? e.truckId : (isGen ? GENERAL : trucks[0].id);
   var names = typesFor(formKind).map(function (x) { return x.name; });
   if (e && names.indexOf(e.type) < 0) names.unshift(e.type);
   if (!names.length) names = ['Other'];
-  var typeSel = e ? e.type : names[0];
+  var typeSel = e ? e.type : (isGen && names.indexOf('Manager salary') >= 0 ? 'Manager salary' : names[0]);
   var truckOpts = trucks.map(function (tr) { return '<option value="' + tr.id + '"' + (truckSel === tr.id ? ' selected' : '') + '>' + esc(tr.name) + '</option>'; }).join('');
-  if (e && !findTruck(e.truckId)) truckOpts = '<option value="' + esc(e.truckId) + '" selected>—</option>' + truckOpts;
-  var inc = formKind === 'income';
-
-  var h = '<div class="sheet-head"><h3>' + (e ? t('editEntry') : inc ? t('addIncome') : t('addCost')) + '</h3><button class="iconbtn" onclick="closeModal()">✕</button></div>';
-  h += '<label class="label">' + t('amount') + '</label><div class="amtwrap"><span class="amtsym">' + sym() + '</span><input class="amtin" id="f_amount" type="number" inputmode="decimal" placeholder="0" value="' + (e ? e.amount : '') + '"></div>';
-  h += '<label class="label">' + t('truck') + '</label><select class="input" id="f_truck">' + truckOpts + '</select>';
-  h += '<label class="label">' + t('type') + '</label><select class="input" id="f_type" onchange="onTypeChanged(this.value)">' + names.map(function (n) { return '<option value="' + esc(n) + '"' + (typeSel === n ? ' selected' : '') + '>' + esc(catLabel(n)) + '</option>'; }).join('') + '</select>';
-  
-  // Cost Nature (Operational vs Fixed) for expenses
-  if (!inc) {
-    h += '<label class="label">' + t('costNature') + '</label><div class="segfull" id="costNatureSeg">'
-      + '<button type="button" id="cn_op" class="' + (formCostType === 'op' ? 'on' : '') + '" onclick="setCostNature(\'op\')">' + t('opBadge') + '</button>'
-      + '<button type="button" id="cn_fixed" class="' + (formCostType === 'fixed' ? 'on' : '') + '" onclick="setCostNature(\'fixed\')">' + t('fixedBadge') + '</button>'
-      + '</div>';
-  }
-
-  h += '<div class="two"><div><label class="label">' + t('date') + '</label><input class="input" id="f_date" type="date" value="' + (e && e.date ? e.date : todayStr()) + '"></div><div><label class="label">' + t('distanceKm') + '</label><input class="input" id="f_distance" type="number" inputmode="decimal" placeholder="0" value="' + (e && e.distance ? e.distance : '') + '"></div></div>';
-
-  if (!inc) {
-    h += '<label class="label">' + t('whoPaid') + '</label><input class="input" id="f_payer" placeholder="' + t('optional') + '" value="' + (e ? esc(e.payer || '') : esc(state.me.name)) + '">';
-  }
-
-  h += '<label class="label">' + t('note') + ' (' + t('optional') + ')</label><input class="input" id="f_note" value="' + (e ? esc(e.note) : '') + '">';
-  
+  if (e && e.truckId !== GENERAL && !findTruck(e.truckId)) truckOpts = '<option value="' + esc(e.truckId) + '" selected>—</option>' + truckOpts;
+  if (!inc) truckOpts += '<option value="' + GENERAL + '"' + (truckSel === GENERAL ? ' selected' : '') + '>🏢 ' + t('general') + '</option>';
   var bakiOn = formStatus === 'receivable' || formStatus === 'loan' || formStatus === 'unpaid';
+  var title = e ? t('editEntry') : inc ? t('addIncome') : isGen ? t('addGeneral') : t('addCost');
+
+  var h = '<div class="sheet-head"><h3>' + title + '</h3><button class="iconbtn" onclick="closeModal()">✕</button></div>';
+  h += '<label class="label">' + t('amount') + ' <span class="req">*</span></label><div class="amtwrap"><span class="amtsym">' + sym() + '</span><input class="amtin" id="f_amount" type="number" inputmode="decimal" placeholder="0" value="' + (e ? e.amount : '') + '"></div>';
+  h += '<label class="label">' + t('truck') + '</label><select class="input" id="f_truck" onchange="onTruckChanged(this.value)">' + truckOpts + '</select>';
+  h += '<p class="hint cond' + (truckSel === GENERAL ? ' show' : '') + '" id="genHint" style="margin:6px 2px 0">' + t('generalHint') + '</p>';
+  h += '<label class="label">' + t('type') + '</label><select class="input" id="f_type" onchange="onTypeChanged(this.value)">' + names.map(function (n) { return '<option value="' + esc(n) + '"' + (typeSel === n ? ' selected' : '') + '>' + esc(catLabel(n)) + '</option>'; }).join('') + '</select>';
+  if (!inc) {
+    h += '<label class="label">' + t('costNature') + '</label><div class="segfull">'
+      + '<button type="button" id="cn_op" class="' + (formCostType === 'op' ? 'on' : '') + '" onclick="setCostNature(\'op\')">' + t('opBadge') + '</button>'
+      + '<button type="button" id="cn_fixed" class="' + (formCostType === 'fixed' ? 'on' : '') + '" onclick="setCostNature(\'fixed\')">' + t('fixedBadge') + '</button></div>';
+  }
+  h += datePicker();
+  h += '<label class="label">' + t('distanceKm') + '</label><input class="input" id="f_distance" type="number" inputmode="decimal" placeholder="0" value="' + (e && e.distance ? e.distance : '') + '">';
+  if (!inc) h += '<label class="label">' + t('whoPaid') + '</label><input class="input" id="f_payer" placeholder="' + t('optional') + '" value="' + (e ? esc(e.payer || '') : esc(state.me.name)) + '">';
+  h += '<label class="label">' + t('note') + ' (' + t('optional') + ')</label><input class="input" id="f_note" value="' + (e ? esc(e.note) : '') + '">';
   h += '<label class="label">' + (inc ? t('status') : t('paymentStatus')) + '</label><div class="segfull" style="margin-top:0">'
     + '<button id="st_a" type="button" class="' + (bakiOn ? '' : 'on') + '" onclick="setStatus(\'' + (inc ? 'received' : 'paid') + '\')">' + (inc ? t('received') : t('isPaid')) + '</button>'
     + '<button id="st_b" type="button" class="' + (bakiOn ? 'on' : '') + '" onclick="setStatus(\'' + (inc ? 'receivable' : 'unpaid') + '\')">' + (inc ? t('receivable') : t('isUnpaid')) + '</button></div>';
-  
   h += '<div class="cond' + (bakiOn ? ' show' : '') + '" id="condBlock"><label class="label">' + (inc ? t('whoOwes') : t('party')) + '</label><input class="input" id="f_party" placeholder="' + t('whoName') + '" value="' + (e ? esc(e.party) : '') + '">'
     + '<div class="two">' + (inc ? '' : '<div><label class="label">' + t('interest') + '</label><input class="input" id="f_interest" type="number" inputmode="decimal" placeholder="0" value="' + (e && e.interest ? e.interest : '') + '"></div>')
     + '<div><label class="label">' + t('dueDate') + '</label><input class="input" id="f_due" type="date" value="' + (e && e.dueDate ? e.dueDate : '') + '"></div></div></div>';
-  
+  if (inc && payPct() > 0) {
+    var hasPay = e ? !!findEntry(e.id + '_dp') : true;
+    h += '<label class="check" style="margin-top:16px"><input type="checkbox" id="f_autopay"' + (hasPay ? ' checked' : '') + '> 👷 ' + t('autoPay').replace('{p}', payPct()) + '</label>';
+  }
   if (e && e.enteredBy) h += '<p class="hint" style="margin-top:14px">' + t('enteredBy') + ': ' + esc(userName(e.enteredBy)) + '</p>';
-  if (e && e.photo && e.photo !== 'pending') h += '<a class="btn ghost" style="margin-top:10px" target="_blank" rel="noopener" href="https://drive.google.com/file/d/' + encodeURIComponent(e.photo) + '/view">📷 ' + t('viewPhoto') + '</a>';
+  var ids = photoIds(e);
+  if (ids.length) {
+    h += '<label class="label">' + t('photos') + '</label><div class="thumbs">' + ids.map(function (pid, i) {
+      var q = encodeURIComponent(pid);
+      return '<a class="thumb" target="_blank" rel="noopener" href="https://drive.google.com/file/d/' + q + '/view"><img src="https://drive.google.com/thumbnail?id=' + q + '&amp;sz=w200" alt="📷 ' + (i + 1) + '" loading="lazy"></a>';
+    }).join('') + '</div>';
+  } else if (e && e.photo === 'pending') h += '<p class="hint" style="margin-top:12px">📷 ' + t('photoPending') + '</p>';
   h += '<button class="btn ' + (inc ? 'in' : 'out') + '" style="margin-top:18px" onclick="saveEntryForm()">' + t('save') + '</button>';
   if (e) h += '<button class="btn danger" style="margin-top:10px" onclick="deleteEntryConfirm(\'' + e.id + '\')">' + t('del') + '</button>';
   openModal(h);
 }
-function onTypeChanged(v) {
-  if (formKind === 'expense') {
-    setCostNature(v === 'Purchase' || v === 'Loan/EMI' ? 'fixed' : 'op');
-  }
-}
-function setCostNature(nature) {
-  formCostType = nature;
-  var op = document.getElementById('cn_op'), fx = document.getElementById('cn_fixed');
-  if(op) op.classList.toggle('on', nature === 'op');
-  if(fx) fx.classList.toggle('on', nature === 'fixed');
-}
+function onTruckChanged(v) { toggleCls('genHint', 'show', v === GENERAL); }
+function onTypeChanged(v) { if (formKind === 'expense') setCostNature(v === 'Purchase' || v === 'Loan/EMI' ? 'fixed' : 'op'); }
+function setCostNature(nature) { formCostType = nature; toggleCls('cn_op', 'on', nature === 'op'); toggleCls('cn_fixed', 'on', nature === 'fixed'); }
 function setStatus(v) {
   formStatus = v;
   var on = v === 'receivable' || v === 'loan' || v === 'unpaid';
-  document.getElementById('condBlock').classList.toggle('show', on);
-  document.getElementById('st_a').classList.toggle('on', !on);
-  document.getElementById('st_b').classList.toggle('on', on);
+  toggleCls('condBlock', 'show', on); toggleCls('st_a', 'on', !on); toggleCls('st_b', 'on', on);
 }
 function saveEntryForm() {
   var amount = parseFloat(val('f_amount'));
   if (!amount || amount <= 0) return toast(t('amount') + ' > 0');
-  var old = editingId ? findEntry(editingId) : null;
-  var e = { id: editingId || uid(), truckId: val('f_truck'), kind: formKind, type: val('f_type'), amount: Math.round(amount * 100) / 100,
-    costNature: formKind === 'expense' ? (formCostType || 'op') : '',
-    payer: formKind === 'expense' ? (val('f_payer').trim() || state.me.name) : '',
-    date: val('f_date') || todayStr(), note: val('f_note').trim(), status: formStatus, party: '', dueDate: '', interest: 0,
-    distance: parseFloat(val('f_distance')) || 0, createdAt: old ? old.createdAt : Date.now(), enteredBy: old ? old.enteredBy : state.me.email, photo: old ? old.photo : '' };
-  if (formStatus === 'receivable' || formStatus === 'loan' || formStatus === 'unpaid') {
-    e.party = val('f_party').trim();
-    e.dueDate = val('f_due');
-  }
-  if (formStatus === 'loan' || formStatus === 'unpaid') e.interest = parseFloat(val('f_interest')) || 0;
+  var dt = readDates(); if (dt.err) return toast(dt.err);
+  var old = editingId ? findEntry(editingId) : null, exp = formKind === 'expense';
+  var e = { id: editingId || uid(), truckId: val('f_truck'), kind: formKind, type: val('f_type'), amount: round2(amount),
+    costNature: exp ? (formCostType || 'op') : '', payer: exp ? (val('f_payer').trim() || state.me.name) : '',
+    date: dt.date, endDate: dt.endDate, note: val('f_note').trim(), status: formStatus, party: '', dueDate: '', interest: 0,
+    distance: parseFloat(val('f_distance')) || 0, createdAt: old ? old.createdAt : Date.now(), enteredBy: old ? old.enteredBy : state.me.email,
+    photo: old ? (old.photo || '') : '', linkId: old ? (old.linkId || '') : '' };
+  if (isBaki(e)) { e.party = val('f_party').trim(); e.dueDate = val('f_due'); }
+  if (e.status === 'loan' || e.status === 'unpaid') e.interest = parseFloat(val('f_interest')) || 0;
   if (!enqueue({ op: 'save', entry: e })) return;
   var i = findIdx(e.id); if (i >= 0) state.ledger[i] = lite(e); else state.ledger.unshift(lite(e));
+  var ap = document.getElementById('f_autopay');
+  if (e.kind === 'income' && ap) syncAutoPay(e, ap.checked);
   closeModal(); render(); toast(t('saved'));
 }
 function deleteEntryConfirm(id) {
   showConfirm(t('deleteEntry'), function () {
-    state.ledger = state.ledger.filter(function (x) { return x.id !== id; });
-    enqueue({ op: 'delete', id: id }); closeModal(); render(); toast(t('del'));
+    var ids = [id].concat(state.ledger.filter(function (x) { return x.linkId === id; }).map(function (x) { return x.id; }));
+    state.ledger = state.ledger.filter(function (x) { return ids.indexOf(x.id) < 0; });
+    ids.forEach(function (x) { enqueue({ op: 'delete', id: x }); });
+    closeModal(); render(); toast(t('del'));
   });
 }
 
-// ---------- ADMIN: truck form with document validity ----------
+// ---------- ADMIN: truck form ----------
 function openTruck(id) {
   var tr = id ? findTruck(id) : null;
   var h = '<div class="sheet-head"><h3>' + (tr ? t('editTruck') : t('addTruck')) + '</h3><button class="iconbtn" onclick="closeModal()">✕</button></div>';
   h += '<label class="label">' + t('truckName') + '</label><input class="input" id="tk_name" value="' + (tr ? esc(tr.name) : '') + '" placeholder="Truck 1">';
   h += '<label class="label">' + t('plate') + '</label><input class="input" id="tk_plate" value="' + (tr ? esc(tr.plate) : '') + '">';
   h += '<div class="two"><div><label class="label">' + t('model') + '</label><input class="input" id="tk_model" value="' + (tr ? esc(tr.model) : '') + '"></div><div><label class="label">' + t('year') + '</label><input class="input" id="tk_year" type="number" value="' + (tr ? esc(tr.year) : '') + '"></div></div>';
-  
-  // Document validity dates
   h += '<div class="sec-title" style="margin-top:16px">📄 ' + t('docsAlert') + '</div>';
   h += '<label class="label">' + t('fitnessExp') + '</label><input class="input" id="tk_fitness" type="date" value="' + (tr && tr.fitnessDate ? tr.fitnessDate : '') + '">';
   h += '<label class="label">' + t('taxExp') + '</label><input class="input" id="tk_tax" type="date" value="' + (tr && tr.taxDate ? tr.taxDate : '') + '">';
   h += '<label class="label">' + t('routeExp') + '</label><input class="input" id="tk_route" type="date" value="' + (tr && tr.routeDate ? tr.routeDate : '') + '">';
-
   h += '<label class="label">' + t('note') + '</label><input class="input" id="tk_note" value="' + (tr ? esc(tr.note) : '') + '">';
   h += '<label class="check" style="margin-top:14px"><input type="checkbox" id="tk_active"' + (!tr || tr.active ? ' checked' : '') + '> ' + t('active') + '</label>';
   h += '<button class="btn amber" style="margin-top:16px" onclick="saveTruckForm(\'' + (id || '') + '\')">' + t('save') + '</button>';
@@ -949,24 +1108,15 @@ function openTruck(id) {
 }
 function saveTruckForm(id) {
   var name = val('tk_name').trim(); if (!name) return toast(t('truckName') + '?');
-  var tk = {
-    id: id || uid(),
-    name: name,
-    plate: val('tk_plate').trim(),
-    model: val('tk_model').trim(),
-    year: val('tk_year').trim(),
-    fitnessDate: val('tk_fitness'),
-    taxDate: val('tk_tax'),
-    routeDate: val('tk_route'),
-    note: val('tk_note').trim(),
-    active: document.getElementById('tk_active').checked
-  };
+  var tk = { id: id || uid(), name: name, plate: val('tk_plate').trim(), model: val('tk_model').trim(), year: val('tk_year').trim(),
+    fitnessDate: val('tk_fitness'), taxDate: val('tk_tax'), routeDate: val('tk_route'), note: val('tk_note').trim(), active: document.getElementById('tk_active').checked };
   var i = state.trucks.findIndex(function (x) { return x.id === tk.id; });
   if (i >= 0) state.trucks[i] = tk; else state.trucks.push(tk);
   closeModal(); render(); toast(t('saved')); adminCall('saveTruck', tk);
 }
 function deleteTruckConfirm(id) { showConfirm(t('deleteTruckQ'), function () { state.trucks = state.trucks.filter(function (x) { return x.id !== id; }); closeModal(); render(); toast(t('del')); adminCall('deleteTruck', { id: id }); }); }
 
+// ---------- ADMIN: people form ----------
 function openUser(i) {
   var u = i >= 0 ? state.users[i] : null, role = u ? u.role : 'driver', tr = u ? u.truckId : (state.trucks[0] ? state.trucks[0].id : '');
   var h = '<div class="sheet-head"><h3>' + (u ? t('editPerson') : t('addPerson')) + '</h3><button class="iconbtn" onclick="closeModal()">✕</button></div>';
